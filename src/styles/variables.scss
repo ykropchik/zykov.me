@@ -1,0 +1,214 @@
+@use 'sass:map';
+
+// ---------------------------------------------------------------------------
+// Color — dark theme
+// ---------------------------------------------------------------------------
+$surface-dark:        #0b0f0e; // Page background
+$surface-raised-dark: #131a18; // Panels, cards, menus, code blocks
+$line-dark:           #2a3834; // Decorative hairlines only (below 3:1 by design)
+$line-strong-dark:    #5f746e; // Input and control borders (3:1+)
+$ink-dark:            #e6f0ed; // Primary text
+$ink-muted-dark:      #9aaea8; // Secondary text and metadata (5.0:1+)
+$teal-dark:           #2dd4bf; // Signal colour: primary action, active, focus, cursor
+$teal-soft-dark:      #123f3a; // Tinted background behind teal or ink text; row and card hover
+$on-teal-dark:        #04110f; // Text and icons on a teal fill
+$amber-dark:          #fbbf24; // Warnings and pending states
+$danger-dark:         #f87171; // Errors and destructive actions
+$link-dark:           $teal-dark; // Alias of teal
+
+// ---------------------------------------------------------------------------
+// Color — light theme
+// ---------------------------------------------------------------------------
+$surface-light:        #f6f8f7;
+$surface-raised-light: #ffffff;
+$line-light:           #c9d3d0;
+$line-strong-light:    #7d8a86;
+$ink-light:            #0d1513;
+$ink-muted-light:      #4f5f5a;
+$teal-light:           #0f766e;
+$teal-soft-light:      #ccfbf1;
+$on-teal-light:        #ffffff;
+$amber-light:          #a16207;
+$danger-light:         #b91c1c;
+$link-light:           $teal-light;
+
+// ---------------------------------------------------------------------------
+// Color — defaults (dark)
+// ---------------------------------------------------------------------------
+$surface:        $surface-dark;
+$surface-raised: $surface-raised-dark;
+$line:           $line-dark;
+$line-strong:    $line-strong-dark;
+$ink:            $ink-dark;
+$ink-muted:      $ink-muted-dark;
+$teal:           $teal-dark;
+$teal-soft:      $teal-soft-dark;
+$on-teal:        $on-teal-dark;
+$amber:          $amber-dark;
+$danger:         $danger-dark;
+$link:           $link-dark;
+
+// Theme maps, for loops and CSS custom property output
+$theme-dark: (
+	'surface':        $surface-dark,
+	'surface-raised': $surface-raised-dark,
+	'line':           $line-dark,
+	'line-strong':    $line-strong-dark,
+	'ink':            $ink-dark,
+	'ink-muted':      $ink-muted-dark,
+	'teal':           $teal-dark,
+	'teal-soft':      $teal-soft-dark,
+	'on-teal':        $on-teal-dark,
+	'amber':          $amber-dark,
+	'danger':         $danger-dark,
+	'link':           $link-dark,
+);
+
+$theme-light: (
+	'surface':        $surface-light,
+	'surface-raised': $surface-raised-light,
+	'line':           $line-light,
+	'line-strong':    $line-strong-light,
+	'ink':            $ink-light,
+	'ink-muted':      $ink-muted-light,
+	'teal':           $teal-light,
+	'teal-soft':      $teal-soft-light,
+	'on-teal':        $on-teal-light,
+	'amber':          $amber-light,
+	'danger':         $danger-light,
+	'link':           $link-light,
+);
+
+// Emits a theme as CSS custom properties: --surface, --ink, ...
+@mixin theme-vars($theme) {
+	@each $name, $value in $theme {
+		--#{$name}: #{$value};
+	}
+}
+
+// Token name → CSS custom property, with the dark value as fallback.
+// Usage: color: token("ink");  →  color: var(--ink, #e6f0ed);
+// Fails at compile time on an unknown token name.
+@function token($name) {
+	@if not map.has-key($theme-dark, $name) {
+		@error 'Unknown color token `#{$name}`. Available: #{map.keys($theme-dark)}';
+	}
+	@return var(--#{$name});
+}
+
+// ---------------------------------------------------------------------------
+// Breakpoints
+// ---------------------------------------------------------------------------
+$breakpoint-sm: 600px; // Below this width: phone sizes for title and lead
+
+// Usage: @include below-sm { ... }
+@mixin below-sm {
+	@media (max-width: #{$breakpoint-sm}) {
+		@content;
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Typography
+// ---------------------------------------------------------------------------
+$font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+$font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+// Text (sans)
+$title-font-size:      64px; // The one headline of a landing page's first screen, once per page
+$title-line-height:    72px;
+$title-font-weight:    600;
+$title-letter-spacing: -0.03em;
+$title-font-size-sm:   40px; // Below $breakpoint-sm
+$title-line-height-sm: 48px;
+
+$display-font-size:      32px; // Page titles, and the title of each section on a landing page (same on phones)
+$display-line-height:    40px;
+$display-font-weight:    600;
+$display-letter-spacing: -0.02em;
+
+$heading-font-size:      20px; // Panel and card headings, list item titles (a role in a work history)
+$heading-line-height:    28px;
+$heading-font-weight:    600;
+$heading-letter-spacing: -0.01em;
+
+$lead-font-size:         20px; // Intro paragraph under a title or display headline, in ink-muted
+$lead-line-height:       30px;
+$lead-font-weight:       400;
+$lead-font-size-sm:      17px; // Below $breakpoint-sm
+$lead-line-height-sm:    26px;
+
+$body-font-size:         15px; // Default running text
+$body-line-height:       22px;
+$body-font-weight:       400;
+
+$small-font-size:        13px; // Helper text, table cells, metadata
+$small-line-height:      20px;
+$small-font-weight:      400;
+
+// Mono
+$label-font-size:        12px; // Uppercase labels, tags, table headers
+$label-line-height:      16px;
+$label-font-weight:      500;
+$label-letter-spacing:   0.06em;
+
+$numeric-font-size:      24px; // Stats and KPIs
+$numeric-line-height:    32px;
+$numeric-font-weight:    500;
+
+$code-font-size:         13px; // Inline code, commands, logs
+$code-line-height:       20px;
+$code-font-weight:       400;
+
+// A style may carry `sm: (size, line-height)` — its phone size below $breakpoint-sm.
+$type-styles: (
+	'title':   (family: $font-sans, size: $title-font-size,   line-height: $title-line-height,   weight: $title-font-weight,   tracking: $title-letter-spacing,
+	sm: (size: $title-font-size-sm, line-height: $title-line-height-sm)),
+	'display': (family: $font-sans, size: $display-font-size, line-height: $display-line-height, weight: $display-font-weight, tracking: $display-letter-spacing),
+	'heading': (family: $font-sans, size: $heading-font-size, line-height: $heading-line-height, weight: $heading-font-weight, tracking: $heading-letter-spacing),
+	'lead':    (family: $font-sans, size: $lead-font-size,    line-height: $lead-line-height,    weight: $lead-font-weight,    tracking: normal,
+	sm: (size: $lead-font-size-sm, line-height: $lead-line-height-sm)),
+	'body':    (family: $font-sans, size: $body-font-size,    line-height: $body-line-height,    weight: $body-font-weight,    tracking: normal),
+	'small':   (family: $font-sans, size: $small-font-size,   line-height: $small-line-height,   weight: $small-font-weight,   tracking: normal),
+	'label':   (family: $font-mono, size: $label-font-size,   line-height: $label-line-height,   weight: $label-font-weight,   tracking: $label-letter-spacing),
+	'numeric': (family: $font-mono, size: $numeric-font-size, line-height: $numeric-line-height, weight: $numeric-font-weight, tracking: normal),
+	'code':    (family: $font-mono, size: $code-font-size,    line-height: $code-line-height,    weight: $code-font-weight,    tracking: normal),
+);
+
+// Usage: @include type("heading");
+// Styles with an `sm` entry (title, lead) step down below $breakpoint-sm on their own.
+@mixin type($name) {
+	@if not map.has-key($type-styles, $name) {
+		@error 'Unknown type style `#{$name}`. Available: #{map.keys($type-styles)}';
+	}
+	$style: map.get($type-styles, $name);
+	font-family:    map.get($style, family);
+	font-size:      map.get($style, size);
+	line-height:    map.get($style, line-height);
+	font-weight:    map.get($style, weight);
+	letter-spacing: map.get($style, tracking);
+
+	$sm: map.get($style, sm);
+	@if $sm {
+		@include below-sm {
+			font-size:   map.get($sm, size);
+			line-height: map.get($sm, line-height);
+		}
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Spacing
+// ---------------------------------------------------------------------------
+$space-2:  8px;  // Icon-to-label gap; tight stacks
+$space-4:  16px; // Control padding, card padding, dot-grid pitch
+$space-6:  24px; // Gap between related blocks; page gutter on phones
+$space-8:  32px; // Section spacing and page gutters
+$space-16: 64px; // Large layout gap: min top/bottom padding of a full-screen section; label column ↔ content
+
+// ---------------------------------------------------------------------------
+// Radius
+// ---------------------------------------------------------------------------
+$radius-sm: 2px; // Tags, checkboxes, inline code
+$radius-md: 4px; // Buttons, inputs, cards
+$radius-lg: 8px; // Dialogs and large panels. Nothing rounder.
