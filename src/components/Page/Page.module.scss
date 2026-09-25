@@ -1,0 +1,9 @@
+@use '@styles/variables' as *;
+
+.page {
+	min-height: 100%;
+	box-sizing: border-box;
+	padding: 0 $space-6;
+	max-width: 1120px;
+	margin: 0 auto;
+}
