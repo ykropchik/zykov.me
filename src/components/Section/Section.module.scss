@@ -1,0 +1,35 @@
+@use '@styles/variables' as *;
+
+.section {
+	box-sizing: border-box;
+	min-height: 100vh;
+	min-height: 100dvh;
+	padding: $space-16 0;
+	align-content: center;
+}
+
+.title {
+	@include type('title');
+	color: token('ink');
+	margin: $space-4 0;
+}
+
+.display {
+	@include type('display');
+	color: token('ink');
+	margin: $space-4 0 0 0;
+}
+
+.subtitle {
+	@include type('lead');
+	color: token('ink-muted');
+	margin: $space-4 0 0 0;
+	max-width: 600px;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: $space-8;
+	margin: $space-8 0;
+}
