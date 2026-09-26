@@ -1,0 +1,42 @@
+@use '@styles/variables' as *;
+
+.job {
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: $space-2;
+	column-gap: $space-6;
+	align-items: baseline;
+	padding: $space-6 0;
+	border-top: 1px solid token('line');
+
+	&:last-child {
+		border-bottom: 1px solid token('line');
+	}
+}
+
+.period {
+	@include type('code');
+	flex: 0 0 160px;
+	color: token('ink-muted');
+}
+
+.body {
+	display: flex;
+	flex-direction: column;
+	gap: $space-2;
+}
+
+.title {
+	@include type('heading');
+	color: token('ink');
+}
+
+.at {
+	font-weight: $body-font-weight;
+	color: token('ink-muted');
+}
+
+.summary {
+	@include type('body');
+	color: token('ink-muted');
+}
