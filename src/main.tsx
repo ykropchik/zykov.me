@@ -2,7 +2,9 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import Page from './components/Page/Page.tsx';
 import Section from './components/Section/Section.tsx';
+import Work from './components/Work/Work.tsx';
 import Stats from './components/Stats/Stats.tsx';
+import Skills from './components/Skills/Skills.tsx';
 
 import './styles/index.scss';
 
@@ -25,6 +27,14 @@ createRoot(document.getElementById('root')!).render(
 				</div>
 
 				<Stats />
+			</Section>
+			<Section
+				name="work"
+				title="Where I’ve been"
+				subtitle={<>The short version. The long one lives in my <a href="#cv">CV</a></>}
+			>
+				<Work />
+				<Skills />
 			</Section>
 		</Page>
 	</StrictMode>,
