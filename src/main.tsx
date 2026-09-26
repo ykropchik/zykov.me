@@ -6,6 +6,7 @@ import Work from './components/Work/Work.tsx';
 import Stats from './components/Stats/Stats.tsx';
 import Skills from './components/Skills/Skills.tsx';
 import Contacts from './components/Contacts/Contacts.tsx';
+import Footer from './components/Footer/Footer.tsx';
 
 import './styles/index.scss';
 
@@ -45,5 +46,6 @@ createRoot(document.getElementById('root')!).render(
 				<Contacts />
 			</Section>
 		</Page>
+		<Footer />
 	</StrictMode>,
 );

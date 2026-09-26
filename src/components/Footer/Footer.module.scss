@@ -1,0 +1,27 @@
+@use '@styles/variables' as *;
+
+.footer {
+	@include type('code');
+	height: 88px;
+	border-top: 1px solid token('line');
+	background: token('surface');
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.content {
+	height: 100%;
+	box-sizing: border-box;
+	padding: 0 $space-6;
+	max-width: 1120px;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: token('ink-muted');
+}
+
+.path {
+	color: token('ink');
+}
