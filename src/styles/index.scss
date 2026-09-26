@@ -8,6 +8,11 @@ html {
 	background-color: token('surface');
 	background-image: radial-gradient(token('line') 1px, transparent 1px);
 	background-size: 16px 16px;
+	scrollbar-gutter: stable;
+
+	&:has(dialog[open]) {
+		overflow: hidden;
+	}
 }
 
 body {

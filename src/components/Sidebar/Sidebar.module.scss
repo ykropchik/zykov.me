@@ -1,0 +1,165 @@
+@use '@styles/variables' as *;
+
+.sidebar {
+	position: fixed;
+	inset: 0;
+	box-sizing: border-box;
+	display: none;
+	justify-content: flex-end;
+	width: 100%;
+	// overwrite UA styles
+	max-width: 100%;
+	height: 100%;
+	max-height: 100%;
+	margin: 0;
+	padding: 0;
+	background: none;
+	border: 0;
+
+	&[open] {
+		display: flex;
+	}
+
+	&::backdrop {
+		background-color: token('surface');
+		opacity: 0.72;
+	}
+}
+
+.panel {
+	@include type('code');
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	width: 440px;
+	max-width: 100%;
+	height: 100%;
+	color: token('ink');
+	background-color: token('surface-raised');
+	border-left: 1px solid token('line');
+
+	@include below-sm {
+		--terminal-line-size: #{$body-font-size};
+		--terminal-line-leading: #{$body-line-height};
+
+		width: 100%;
+		border-left: 0;
+		font-size: $body-font-size;
+		line-height: $body-line-height;
+	}
+}
+
+.bar {
+	box-sizing: border-box;
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: space-between;
+	height: 48px;
+	padding: 0 $space-2 0 $space-8;
+	border-bottom: 1px solid token('line');
+}
+
+.title {
+	color: token('ink-muted');
+}
+
+.close {
+	box-sizing: border-box;
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	padding: $space-2;
+	color: token('ink');
+	background: none;
+	border: 0;
+	border-radius: $radius-md;
+	cursor: pointer;
+}
+
+.body {
+	display: flex;
+	flex-direction: column;
+	gap: $space-2;
+	padding: $space-8;
+	overflow-y: auto;
+
+	@include below-sm {
+		padding: $space-8 $space-6;
+	}
+}
+
+.group {
+	display: flex;
+	flex-direction: column;
+	gap: $space-2;
+}
+
+.nav {
+	display: flex;
+	flex-direction: column;
+	margin: 0 (-$space-2);
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	height: 28px;
+	padding: 0 $space-2;
+	color: token('ink');
+	border-radius: $radius-sm;
+	text-decoration: none !important;
+
+	&:hover {
+		background-color: token('teal-soft');
+	}
+
+	@include below-sm {
+		height: 40px;
+	}
+}
+
+.permissions {
+	flex: 0 0 104px;
+	color: token('ink-muted');
+
+	@include below-sm {
+		flex-basis: 96px;
+	}
+}
+
+.name {
+	flex: 0 0 88px;
+
+	@include below-sm {
+		flex-basis: 80px;
+	}
+}
+
+.description {
+	flex: 1;
+	min-width: 0;
+	color: token('ink-muted');
+}
+
+.hint {
+	color: token('ink-muted');
+	margin-bottom: $space-2;
+}
+
+// The two artboards differ only in "click" vs "tap", which is really about the
+// input device rather than the viewport — so ask about hover, not width.
+.hintTap {
+	display: none;
+}
+
+@media (hover: none) {
+	.hintClick {
+		display: none;
+	}
+
+	.hintTap {
+		display: inline;
+	}
+}

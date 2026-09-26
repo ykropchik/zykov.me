@@ -4,6 +4,9 @@
 	display: flex;
 	align-items: center;
 	@include type('code');
+	// For opportunities to override the size in a separate context.
+	font-size: var(--terminal-line-size, #{$code-font-size});
+	line-height: var(--terminal-line-leading, #{$code-line-height});
 	color: token('ink');
 }
 
@@ -13,7 +16,7 @@
 }
 
 .caret {
-	width: $space-2;
-	height: $space-4;
+	width: 0.6em;
+	height: 1.2em;
 	background-color: token('teal');
 }
