@@ -1,0 +1,23 @@
+@use '@styles/variables' as *;
+
+.stat {
+	flex: 1 0 120px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: $space-2;
+	padding: $space-4;
+	background-color: token('surface');
+	border: 1px solid token('line');
+	border-radius: $radius-md;
+}
+
+.value {
+	@include type('numeric');
+	color: token('teal');
+}
+
+.label {
+	@include type('small');
+	color: token('ink-muted');
+}

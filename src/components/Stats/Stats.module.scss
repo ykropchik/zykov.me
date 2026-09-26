@@ -1,0 +1,13 @@
+@use '@styles/variables' as *;
+
+.stats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $space-4;
+}
+
+.statsGroup {
+	flex: 1;
+	display: flex;
+	gap: $space-4;
+}
