@@ -1,0 +1,14 @@
+@use '@styles/variables' as *;
+
+.contacts {
+	display: flex;
+	flex-direction: column;
+	gap: $space-4;
+}
+
+.contactsGroup {
+	flex: 1;
+	display: flex;
+	flex-wrap: wrap;
+	gap: $space-4;
+}

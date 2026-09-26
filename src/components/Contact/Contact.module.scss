@@ -1,0 +1,57 @@
+@use '@styles/variables' as *;
+
+.contact {
+	flex: 1 1 320px;
+	min-width: 0;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	gap: $space-4;
+	padding: $space-4;
+	color: token('ink');
+	text-decoration: none;
+	background-color: token('surface-raised');
+	border: 1px solid token('line');
+	border-radius: $radius-md;
+
+	&:hover {
+		background-color: token('teal-soft');
+		text-decoration: none;
+	}
+}
+
+.badge {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	padding: $space-2;
+	color: token('teal');
+	background-color: token('teal-soft');
+	border-radius: $radius-md;
+}
+
+.text {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.label {
+	@include type('label');
+	color: token('ink-muted');
+}
+
+.value {
+	@include type('code');
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.arrow {
+	margin-left: auto;
+	display: flex;
+	flex-shrink: 0;
+	color: token('teal');
+}

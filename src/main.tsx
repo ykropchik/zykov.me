@@ -5,6 +5,7 @@ import Section from './components/Section/Section.tsx';
 import Work from './components/Work/Work.tsx';
 import Stats from './components/Stats/Stats.tsx';
 import Skills from './components/Skills/Skills.tsx';
+import Contacts from './components/Contacts/Contacts.tsx';
 
 import './styles/index.scss';
 
@@ -35,6 +36,13 @@ createRoot(document.getElementById('root')!).render(
 			>
 				<Work />
 				<Skills />
+			</Section>
+			<Section
+				name="contact"
+				title="Say hi"
+				subtitle="Questions, ideas or just a hello."
+			>
+				<Contacts />
 			</Section>
 		</Page>
 	</StrictMode>,
