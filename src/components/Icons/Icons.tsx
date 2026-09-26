@@ -89,3 +89,23 @@ export function ArrowUpRightIcon({ size = 24 }) {
 		</svg>
 	);
 }
+
+export function MenuIcon({ size = 24 }) {
+	return (
+		<svg
+			height={size}
+			width={size}
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			aria-hidden="true"
+		>
+			<path d="M4 7h16" />
+			<path d="M4 12h16" />
+			<path d="M4 17h10" />
+		</svg>
+	);
+}

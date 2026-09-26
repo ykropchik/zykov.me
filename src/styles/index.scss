@@ -11,14 +11,16 @@ html {
 }
 
 body {
-	height: 100vh;
-	height: 100dvh;
+	// min-height, not height: a fixed one-screen box would end the sticky
+	// header's containing block after the first section.
+	min-height: 100vh;
+	min-height: 100dvh;
 	margin: 0;
 }
 
 #root {
 	position: relative;
-	height: 100%;
+	min-height: 100%;
 	width: 100%;
 }
 

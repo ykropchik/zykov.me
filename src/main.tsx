@@ -7,11 +7,13 @@ import Stats from './components/Stats/Stats.tsx';
 import Skills from './components/Skills/Skills.tsx';
 import Contacts from './components/Contacts/Contacts.tsx';
 import Footer from './components/Footer/Footer.tsx';
+import Header from './components/Header/Header.tsx';
 
 import './styles/index.scss';
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
+		<Header />
 		<Page>
 			<Section
 				name="whoami"

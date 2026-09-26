@@ -1,0 +1,65 @@
+@use '@styles/variables' as *;
+
+.header {
+	position: sticky;
+	display: flex;
+	align-items: center;
+	top: 0;
+	z-index: 1;
+	box-sizing: border-box;
+	height: 48px;
+	padding: 0 $space-16;
+	background-color: token('surface-raised');
+	border-bottom: 1px solid token('line');
+}
+
+.content {
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+	max-width: 1120px;
+	margin: 0 auto;
+	padding: 0 $space-6;
+	display: flex;
+	align-items: center;
+}
+
+.dots {
+	position: absolute;
+	left: $space-4;
+	display: flex;
+	flex-shrink: 0;
+	gap: $space-2;
+
+	span {
+		width: $space-2;
+		height: $space-2;
+		border: 1px solid token('line-strong');
+		border-radius: 50%;
+	}
+}
+
+.path {
+	@include type('code');
+	color: token('ink-muted');
+	white-space: nowrap;
+	text-decoration: none !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.user {
+	color: token('ink');
+}
+
+.menu {
+	display: flex;
+	position: absolute;
+	right: $space-2;
+	padding: $space-2;
+	color: token('ink');
+	background: none;
+	border: 0;
+	border-radius: $radius-md;
+	cursor: pointer;
+}
