@@ -20,3 +20,37 @@ body {
 	height: 100%;
 	width: 100%;
 }
+
+*:focus-visible {
+	outline: 2px solid token('teal');
+	outline-offset: 2px;
+}
+
+p {
+	@include type('body');
+	color: token('ink');
+	margin: 0;
+	max-width: 680px;
+
+	&:not(:first-child) {
+		margin: $space-4 0 0 0;
+	}
+}
+
+mark {
+	color: token('link');
+	background: none;
+}
+
+a {
+	color: token('link');
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.muted-text {
+	color: token('ink-muted');
+}
