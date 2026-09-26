@@ -1,0 +1,19 @@
+@use '@styles/variables' as *;
+
+.terminalLine {
+	display: flex;
+	align-items: center;
+	@include type('code');
+	color: token('ink');
+}
+
+.promptSign {
+	color: token('ink-muted');
+	margin: 0 $space-2;
+}
+
+.caret {
+	width: $space-2;
+	height: $space-4;
+	background-color: token('teal');
+}
