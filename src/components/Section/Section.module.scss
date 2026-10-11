@@ -15,6 +15,12 @@
 	display: none;
 }
 
+// The footer floats over the bottom of the stage, so the section it belongs to
+// holds its content clear of it.
+.withFooter .inner {
+	padding-bottom: $space-16 + $footer-height;
+}
+
 .inner {
 	box-sizing: border-box;
 	width: 100%;

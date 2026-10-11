@@ -2,12 +2,15 @@
 
 .footer {
 	@include type('code');
-	height: 88px;
-	border-top: 1px solid token('line');
-	background: token('surface');
+	// Out of flow: it slides in and out, and a footer that took part in the layout
+	// would resize the section behind it on the way past.
 	position: absolute;
 	bottom: 0;
+	left: 0;
 	width: 100%;
+	height: $footer-height;
+	border-top: 1px solid token('line');
+	background: token('surface');
 }
 
 .content {
