@@ -1,9 +1,13 @@
+import * as motion from 'motion/react-m';
+import useBlockVariants from '../../hooks/useBlockVariants.ts';
 import Stat from '../Stat/Stat.tsx';
 import styles from './Stats.module.scss';
 
 export default function Stats() {
+	const blockVariants = useBlockVariants();
+
 	return (
-		<div className={styles.stats}>
+		<motion.div className={styles.stats} variants={blockVariants}>
 			<div className={styles.statsGroup}>
 				<Stat value="[N]" label="[some funny stat]" />
 				<Stat value="[N]" label="[some funny stat]" />
@@ -12,6 +16,6 @@ export default function Stats() {
 				<Stat value="[N]" label="[some funny stat]" />
 				<Stat value="[N]" label="[some funny stat]" />
 			</div>
-		</div>
+		</motion.div>
 	);
 }

@@ -1,3 +1,5 @@
+import * as motion from 'motion/react-m';
+import useBlockVariants from '../../hooks/useBlockVariants.ts';
 import Tag, { type TagVariant } from '../Tag/Tag.tsx';
 import styles from './Skills.module.scss';
 
@@ -8,8 +10,10 @@ const stack: { label: string; variant: TagVariant; items: string[] }[] = [
 ];
 
 export default function Skills() {
+	const blockVariants = useBlockVariants();
+
 	return (
-		<div className={styles.skills}>
+		<motion.div className={styles.skills} variants={blockVariants}>
 			{stack.map((group) => (
 				<div key={group.label} className={styles.group}>
 					<div className={styles.label}>{group.label}</div>
@@ -20,6 +24,6 @@ export default function Skills() {
 					</div>
 				</div>
 			))}
-		</div>
+		</motion.div>
 	);
 }
