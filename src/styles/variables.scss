@@ -111,6 +111,34 @@ $breakpoint-sm: 600px; // Below this width: phone sizes for title and lead
 // ---------------------------------------------------------------------------
 // Typography
 // ---------------------------------------------------------------------------
+@font-face {
+	font-family: 'Inter';
+	src: url('/font/Inter-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: url('/font/Inter-SemiBold.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/font/JetBrainsMono-Medium.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+}
+
 $font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 $font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
@@ -205,6 +233,11 @@ $space-4:  16px; // Control padding, card padding, dot-grid pitch
 $space-6:  24px; // Gap between related blocks; page gutter on phones
 $space-8:  32px; // Section spacing and page gutters
 $space-16: 64px; // Large layout gap: min top/bottom padding of a full-screen section; label column ↔ content
+
+// ---------------------------------------------------------------------------
+// Layout
+// ---------------------------------------------------------------------------
+$footer-height: 88px; // Floats over the bottom of the stage; see Footer.module.scss
 
 // ---------------------------------------------------------------------------
 // Radius

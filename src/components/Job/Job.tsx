@@ -1,3 +1,5 @@
+import * as motion from 'motion/react-m';
+import useBlockVariants from '../../hooks/useBlockVariants.ts';
 import styles from './Job.module.scss';
 
 type JobProps = {
@@ -8,8 +10,10 @@ type JobProps = {
 };
 
 export default function Job({ period, role, company, summary }: JobProps) {
+	const blockVariants = useBlockVariants();
+
 	return (
-		<div className={styles.job}>
+		<motion.div className={styles.job} variants={blockVariants}>
 			<div className={styles.period}>{period}</div>
 			<div className={styles.body}>
 				<div className={styles.title}>
@@ -17,6 +21,6 @@ export default function Job({ period, role, company, summary }: JobProps) {
 				</div>
 				<div className={styles.summary}>{summary}</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 }

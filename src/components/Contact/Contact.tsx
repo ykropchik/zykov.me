@@ -1,4 +1,6 @@
 import React from 'react';
+import * as motion from 'motion/react-m';
+import useBlockVariants from '../../hooks/useBlockVariants.ts';
 import { ArrowUpRightIcon } from '../Icons/Icons.tsx';
 import styles from './Contact.module.scss';
 
@@ -10,8 +12,10 @@ type ContactProps = {
 };
 
 export default function Contact({ href, icon, label, value }: ContactProps) {
+	const blockVariants = useBlockVariants();
+
 	return (
-		<a className={styles.contact} href={href}>
+		<motion.a className={styles.contact} href={href} variants={blockVariants}>
 			<span className={styles.badge}>
 				{icon}
 			</span>
@@ -22,6 +26,6 @@ export default function Contact({ href, icon, label, value }: ContactProps) {
 			<span className={styles.arrow}>
 				<ArrowUpRightIcon />
 			</span>
-		</a>
+		</motion.a>
 	);
 }

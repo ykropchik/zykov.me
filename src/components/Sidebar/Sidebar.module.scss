@@ -102,14 +102,21 @@
 	margin: 0 (-$space-2);
 }
 
+// Styled as plain text: it is a button because the page turns in place, with no
+// address to navigate to.
 .row {
+	box-sizing: border-box;
 	display: flex;
 	align-items: center;
 	height: 28px;
 	padding: 0 $space-2;
 	color: token('ink');
+	font: inherit;
+	text-align: left;
+	background: none;
+	border: 0;
 	border-radius: $radius-sm;
-	text-decoration: none !important;
+	cursor: pointer;
 
 	&:hover {
 		background-color: token('teal-soft');

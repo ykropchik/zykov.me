@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classNames from 'classnames';
 import styles from './Tag.module.scss';
 
 export type TagVariant = 'solid' | 'outline' | 'dashed';
@@ -9,6 +10,6 @@ type TagProps = {
 
 export default function Tag({ variant = 'solid', children }: React.PropsWithChildren<TagProps>) {
 	return (
-		<span className={`${styles.tag} ${styles[variant]}`}>{children}</span>
+		<span className={classNames(styles.tag, styles[variant])}>{children}</span>
 	);
 }
