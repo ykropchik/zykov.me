@@ -41,11 +41,16 @@
 
 .path {
 	@include type('code');
+	box-sizing: border-box;
 	color: token('ink-muted');
+	background: none;
+	border: 0;
+	padding: 0;
 	white-space: nowrap;
-	text-decoration: none !important;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-align: left;
+	cursor: pointer;
 }
 
 .user {
