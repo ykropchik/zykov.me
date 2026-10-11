@@ -2,10 +2,37 @@
 
 .section {
 	box-sizing: border-box;
-	min-height: 100vh;
-	min-height: 100dvh;
-	padding: $space-16 0;
-	align-content: center;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow-y: auto;
+	// There is nothing to hand the gesture on to — turning the page is the pager's
+	// job, not the browser's.
+	overscroll-behavior: contain;
+}
+
+.inactive {
+	display: none;
+}
+
+.inner {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 1120px;
+	// Centres the content when it fits, and collapses to 0 when it doesn't —
+	// unlike `justify-content: center`, which would put the overflow out of
+	// reach above the top of the scroller.
+	margin: auto;
+	padding: $space-16 $space-6;
+	// A flex item shrinks by default; taller-than-viewport content has to keep
+	// its height for the section to scroll at all.
+	flex-shrink: 0;
+}
+
+// Plain block flow, so the margins below behave as they would without this
+// wrapper, which exists only to carry the stagger.
+.output {
+	display: block;
 }
 
 .title {
@@ -32,4 +59,15 @@
 	flex-direction: column;
 	gap: $space-8;
 	margin: $space-8 0;
+}
+
+// `.content` sets the distance between blocks, so a paragraph carries none of its
+// own — including against `p:not(:first-child)` in index.scss, whose 16px is the
+// rhythm for prose standing on its own rather than as a block in this stack.
+.text {
+	margin: 0;
+
+	&:not(:first-child) {
+		margin: 0;
+	}
 }

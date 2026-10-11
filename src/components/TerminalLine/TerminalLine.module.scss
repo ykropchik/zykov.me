@@ -15,8 +15,38 @@
 	margin: 0 $space-2;
 }
 
+.command {
+	// A half-typed `cd about` ends on a space, and a flex child would collapse it —
+	// which would jog the caret back a character.
+	white-space: pre;
+}
+
+// The box is animated to width independently of its text and clips it — that is
+// what makes the command appear to be typed, and keeps the caret beside the last
+// character.
+.measured {
+	overflow: hidden;
+	flex-shrink: 0;
+}
+
 .caret {
 	width: 0.6em;
 	height: 1.2em;
 	background-color: token('teal');
+}
+
+.caretBlink {
+	animation: caret-blink 1.1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.caretBlink {
+		animation: none;
+	}
 }
