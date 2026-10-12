@@ -53,7 +53,12 @@
 	cursor: pointer;
 }
 
-.user {
+.pathAnimate {
+	position: relative;
+	display: inline-block;
+}
+
+.pathSegment {
 	color: token('ink');
 }
 
