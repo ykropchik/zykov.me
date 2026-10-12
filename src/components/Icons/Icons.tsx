@@ -128,3 +128,41 @@ export function CloseIcon({ size = 24 }) {
 		</svg>
 	);
 }
+
+export function ArrowUpIcon({ size = 24 }) {
+	return (
+		<svg
+			height={size}
+			width={size}
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			aria-hidden="true"
+		>
+			<path d="M12 19V5" />
+			<path d="m5 12 7-7 7 7" />
+		</svg>
+	);
+}
+
+export function ArrowDownIcon({ size = 24 }) {
+	return (
+		<svg
+			height={size}
+			width={size}
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			aria-hidden="true"
+		>
+			<path d="M12 5v14" />
+			<path d="m19 12-7 7-7-7" />
+		</svg>
+	);
+}

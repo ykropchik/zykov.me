@@ -1,0 +1,28 @@
+@use '@styles/variables' as *;
+
+.hint {
+	@include type('code');
+	display: flex;
+	align-items: center;
+	gap: $space-2;
+	margin: 0;
+	color: token('ink-muted');
+
+	@media (pointer: coarse) {
+		display: none;
+	}
+}
+
+.key {
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	border: 1px solid token('line');
+	border-radius: $radius-sm;
+	background-color: token('surface-raised');
+	color: token('ink');
+	font: inherit;
+}

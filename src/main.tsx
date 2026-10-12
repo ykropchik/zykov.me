@@ -7,6 +7,7 @@ import Work from './components/Work/Work.tsx';
 import Skills from './components/Skills/Skills.tsx';
 import Contacts from './components/Contacts/Contacts.tsx';
 import Stats from './components/Stats/Stats.tsx';
+import ScrollHint from './components/ScrollHint/ScrollHint.tsx';
 
 import './styles/index.scss';
 
@@ -19,7 +20,9 @@ createRoot(document.getElementById('root')!).render(
 						name="whoami"
 						title="Hi, I’m Misha."
 						subtitle="[Your role] in [City]. I like [one line about what you enjoy building]. This page is the relaxed version of my résumé — pull up a chair."
-					/>
+					>
+						<ScrollHint />
+					</Section>
 					<Section
 						name="about"
 						description="the informal part"
