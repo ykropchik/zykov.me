@@ -172,7 +172,6 @@ export default function SectionsContextProvider({ homeDir, sections, children }:
 	return (
 		<SectionsContext
 			value={{
-				homeDir,
 				sections,
 				firstSection,
 				lastSection,

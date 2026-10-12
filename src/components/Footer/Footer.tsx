@@ -21,7 +21,7 @@ const FADED = { opacity: 0 };
 const OPAQUE = { opacity: 1 };
 
 export default function Footer() {
-	const { homeDir, lastSection, activeSection, phase } = useContext(SectionsContext);
+	const { lastSection, activeSection, phase } = useContext(SectionsContext);
 	const reduced = useReducedMotionConfig();
 	const away = reduced ? FADED : OFF_SCREEN;
 	const here = reduced ? OPAQUE : ON_SCREEN;
@@ -41,10 +41,7 @@ export default function Footer() {
 					exit={{ ...away, transition: DEPART }}
 				>
 					<div className={styles.content}>
-						<span className={styles.path}>
-							<mark>~/</mark>
-							{homeDir}
-						</span>
+						<mark>~/</mark>
 						<span>© 2026 Misha Zykov</span>
 					</div>
 				</motion.footer>

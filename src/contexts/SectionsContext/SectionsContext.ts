@@ -14,7 +14,6 @@ export type SectionInfo = {
 export type Phase = 'type' | 'print' | 'idle' | 'clear';
 
 type SectionsContextValue = {
-	homeDir: string;
 	/** In the order the sections stand in the markup. */
 	sections: readonly SectionInfo[];
 	/** The two ends of that order, so the lookup is written once rather than in every section. */
@@ -42,7 +41,6 @@ type SectionsContextValue = {
 };
 
 const SectionsContext = createContext<SectionsContextValue>({
-	homeDir: '',
 	sections: [],
 	firstSection: null,
 	lastSection: null,
