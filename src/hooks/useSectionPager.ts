@@ -55,9 +55,9 @@ const target: {
 	turn: ((direction: 1 | -1) => boolean) | null;
 } = { element: null, turn: null };
 
-/** The sidebar blocks page scroll */
+/** The sidebar blocks page scroll; it says so as any modal does, by being one. */
 function isBlocked() {
-	return document.querySelector('dialog[open]') !== null;
+	return document.querySelector('[aria-modal="true"]') !== null;
 }
 
 function endBurst() {

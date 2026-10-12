@@ -3,31 +3,21 @@
 .sidebar {
 	position: fixed;
 	inset: 0;
-	box-sizing: border-box;
-	display: none;
+	// Over the header, which stands at 1.
+	z-index: 2;
+	display: flex;
 	justify-content: flex-end;
-	width: 100%;
-	// overwrite UA styles
-	max-width: 100%;
-	height: 100%;
-	max-height: 100%;
-	margin: 0;
-	padding: 0;
-	background: none;
-	border: 0;
+}
 
-	&[open] {
-		display: flex;
-	}
-
-	&::backdrop {
-		background-color: token('surface');
-		opacity: 0.72;
-	}
+.backdrop {
+	position: absolute;
+	inset: 0;
+	background-color: color-mix(in srgb, token('surface') 72%, transparent);
 }
 
 .panel {
 	@include type('code');
+	position: relative;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;

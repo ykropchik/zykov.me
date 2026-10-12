@@ -14,6 +14,8 @@ export const timing = {
 	blockGap: Duration.create(60),
 	/** One block of output arriving. */
 	blockIn: Duration.create(320),
+	/** The sidebar sliding in. */
+	sidebarInOut: Duration.create(180),
 } as const;
 
 export function keystrokes(command: string): Duration {

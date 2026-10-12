@@ -1,19 +1,19 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar.tsx';
 import SidebarContext from './SidebarContext.ts';
 
 export default function SidebarContextProvider({ children }: React.PropsWithChildren) {
-	const sideBar = useRef<HTMLDialogElement>(null);
+	const [isOpen, setIsOpen] = useState(false);
+
+	const open = useCallback(() => setIsOpen(true), []);
+	const close = useCallback(() => setIsOpen(false), []);
+
+	const value = useMemo(() => ({ open, close }), [open, close]);
 
 	return (
-		<SidebarContext
-			value={{
-				open: () => sideBar.current?.showModal(),
-				close: () => sideBar.current?.close(),
-			}}
-		>
+		<SidebarContext value={value}>
 			{children}
-			<Sidebar ref={sideBar} />
+			<Sidebar isOpen={isOpen} onClose={close} />
 		</SidebarContext>
 	);
 }
