@@ -6,9 +6,20 @@
 
 html {
 	background-color: token('surface');
-	background-image: radial-gradient(token('line') 1px, transparent 1px);
-	background-size: 16px 16px;
 	overscroll-behavior-y: none;
+
+	&::before {
+		content: '';
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+		pointer-events: none;
+		background-image: radial-gradient(token('line') 1px, transparent 1px);
+		background-size: 16px 16px;
+
+		-webkit-mask-image: radial-gradient(ellipse 70% 75% at 50% 45%, #000 10%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
+		mask-image: radial-gradient(ellipse 70% 75% at 50% 45%, #000 10%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
+	}
 }
 
 body {
