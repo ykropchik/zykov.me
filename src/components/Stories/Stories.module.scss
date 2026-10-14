@@ -1,0 +1,178 @@
+@use '@styles/variables' as *;
+
+.stories {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	background-color: token('surface-raised');
+	border: 1px solid token('line');
+	border-radius: $radius-md;
+}
+
+.tabs {
+	display: flex;
+	border-bottom: 1px solid token('line');
+	@include type('code');
+}
+
+.tab {
+	flex: 1;
+	padding: $space-3 $space-4;
+	border: 0;
+	border-right: 1px solid token('line');
+	background: transparent;
+	font: inherit;
+	color: token('ink-muted');
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+	transition: 0.2s ease-in-out;
+
+	&:last-of-type {
+		border-right: 0;
+	}
+
+	&:hover:not(.active) {
+		color: token('ink');
+	}
+
+	// The card clips its overflow, so the ring has to sit inside.
+	&:focus-visible {
+		outline-offset: -2px;
+	}
+
+	&.active {
+		color: token('on-teal');
+		background-color: token('teal');
+	}
+
+	@include below-sm {
+		flex: 1 1 auto;
+		padding: 0 $space-2;
+	}
+}
+
+.panels {
+	display: grid;
+}
+
+.panel {
+	grid-area: 1 / 1;
+	display: flex;
+	flex-direction: column;
+	gap: $space-6;
+	padding: $space-6;
+
+	&.hidden {
+		visibility: hidden;
+	}
+
+	&:focus-visible {
+		outline-offset: -2px;
+	}
+
+	@include below-sm {
+		padding: $space-4;
+	}
+}
+
+.heading {
+	display: flex;
+	flex-direction: column;
+	gap: $space-2;
+}
+
+.label {
+	@include type('label');
+	color: token('ink-muted');
+}
+
+.metric {
+	display: flex;
+	align-items: baseline;
+	gap: $space-4;
+
+	@include below-sm {
+		flex-direction: column;
+		gap: $space-2;
+	}
+}
+
+.value {
+	@include type('numeric');
+	color: token('teal');
+}
+
+.caption {
+	@include type('body');
+	color: token('ink');
+}
+
+.notes {
+	display: grid;
+	grid-template-columns: 64px minmax(0, 1fr);
+	gap: $space-4;
+	margin: 0;
+	@include type('body');
+
+	@include below-sm {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.note {
+	display: contents;
+
+	@include below-sm {
+		display: flex;
+		flex-direction: column;
+		gap: $space-2;
+	}
+}
+
+.term {
+	@include type('code');
+	// Sits on the first line of its description.
+	line-height: $body-line-height;
+	color: token('ink-muted');
+
+	@include below-sm {
+		line-height: $code-line-height;
+	}
+}
+
+.description {
+	margin: 0;
+	color: token('ink');
+}
+
+.status {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: $space-4;
+	box-sizing: border-box;
+	padding: $space-2 $space-4;
+	border-top: 1px solid token('line');
+	background-color: token('surface');
+	font-family: $font-mono;
+	font-size: $label-font-size;
+	line-height: $label-line-height;
+	color: token('ink-muted');
+}
+
+.path {
+	color: token('ink');
+}
+
+.counter {
+	color: token('teal');
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.tab {
+		transition: none;
+	}
+}
