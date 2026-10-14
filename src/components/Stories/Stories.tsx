@@ -16,7 +16,7 @@ type Story = {
 const stories: Story[] = [
 	{
 		file: 'verification.md',
-		label: 'FARPOST · VERIFICATION',
+		label: 'FARPOST · VERIFICATION PAGE',
 		metric: { value: '×2', caption: 'completed seller verifications' },
 		problem: 'One scary form for everyone — sellers couldn’t tell which fields were meant for them.',
 		tried: 'Split the fields into tabs by seller status, so everyone sees only what’s theirs. Plus a fresh look and hints along the way.',
@@ -42,7 +42,11 @@ const stories: Story[] = [
 
 const NOTES = ['problem', 'tried', 'result'] as const;
 
-export default function Stories() {
+type StoriesProps = {
+	className?: string;
+};
+
+export default function Stories({ className }: StoriesProps) {
 	const blockVariants = useBlockVariants();
 	const id = useId();
 	const [active, setActive] = useState(0);
@@ -55,7 +59,7 @@ export default function Stories() {
 	};
 
 	return (
-		<motion.article className={styles.stories} variants={blockVariants}>
+		<motion.article className={classNames(styles.stories, className)} variants={blockVariants}>
 			<div className={styles.tabs} role="tablist" aria-label="Stories">
 				{stories.map((story, index) => (
 					<button

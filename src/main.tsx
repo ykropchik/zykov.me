@@ -6,6 +6,7 @@ import Section from './components/Section/Section.tsx';
 import Contacts from './components/Contacts/Contacts.tsx';
 import Stats from './components/Stats/Stats.tsx';
 import ScrollHint from './components/ScrollHint/ScrollHint.tsx';
+import Work from './components/Work/Work.tsx';
 import WhereAmI from './components/WhereAmI/WhereAmI.tsx';
 
 import './styles/index.scss';
@@ -40,11 +41,11 @@ createRoot(document.getElementById('root')!).render(
 					</Section>
 					<Section
 						name="work"
-						description="where I’ve been"
-						title="Where I’ve been"
-						subtitle={<>The short version. The long one lives in my <a href="#cv">CV</a></>}
+						description="about work"
+						title="A bit about work"
+						subtitle="The parts of the job I actually enjoy, and a few stories behind them."
 					>
-						<Principles />
+						<Work />
 					</Section>
 					<Section
 						name="whereami"

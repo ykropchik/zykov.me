@@ -1,0 +1,30 @@
+@use '@styles/variables' as *;
+
+.work {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $space-8;
+
+	@include below-sm {
+		flex-direction: column;
+		flex-wrap: nowrap;
+	}
+}
+
+.left {
+	flex: 1;
+	min-width: 380px;
+	
+	@include below-sm {
+		min-width: 0;
+	}
+}
+
+.right {
+	flex: 1;
+	min-width: 420px;
+
+	@include below-sm {
+		min-width: 0;
+	}
+}
