@@ -19,17 +19,24 @@ createRoot(document.getElementById('root')!).render(
 					<Section
 						name="whoami"
 						title="Hi, I’m Misha."
-						subtitle="[Your role] in [City]. I like [one line about what you enjoy building]. This page is the relaxed version of my résumé — pull up a chair."
+						subtitle={(
+							<>
+								I’m a frontend engineer. The best part of my job is simple: somewhere, someone clicks a button I made and their day gets a little easier.
+								<br />
+								This isn’t a <a>CV</a> — just me, telling you about myself.
+							</>
+						)}
 					>
 						<ScrollHint />
 					</Section>
 					<Section
 						name="about"
-						description="the informal part"
-						title="The informal part"
-						subtitle="The bits that don’t fit in a CV."
+						description="about me"
+						title="A bit about me"
+						subtitle="Where it started, and what keeps me busy now."
 					>
-						<Section.Text>[A few sentences in your own voice: how you got into this, what still makes it fun, what kind of problems you like to untangle.]</Section.Text>
+						<Section.Text>It started back in school, when I decided to build a weather station on Arduino. Seeing something I’d made actually work hooked me for good. At university I fell for the web: no soldering required, and anything I build is just one link away from anyone. I’ve been here ever since.</Section.Text>
+						<Section.Text className="muted-text">Honestly, most of my hobbies come with a screen: microcontrollers, video games, anime. Then there’s JDM. I love the car culture, even if I couldn’t explain what’s going on under the hood, so Forza Horizon is my garage for now. Someday, I hope, I’ll see it all in Japan — the cars, the anime, all of it, off the screen for once.</Section.Text>
 						<Stats />
 					</Section>
 					<Section

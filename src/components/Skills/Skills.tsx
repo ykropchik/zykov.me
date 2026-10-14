@@ -4,9 +4,9 @@ import Tag, { type TagVariant } from '../Tag/Tag.tsx';
 import styles from './Skills.module.scss';
 
 const stack: { label: string; variant: TagVariant; items: string[] }[] = [
-	{ label: 'EVERY DAY', variant: 'solid', items: ['[language]', '[framework]', '[database]'] },
-	{ label: 'COMFORTABLE WITH', variant: 'outline', items: ['[tool]', '[cloud]', '[tool]'] },
-	{ label: 'POKING AT NOW', variant: 'dashed', items: ['[something new]', '[something new]'] },
+	{ label: 'EVERY DAY', variant: 'solid', items: ['TypeScript', 'React', 'SCSS', 'Webpack & SWC'] },
+	{ label: 'COMFORTABLE WITH', variant: 'outline', items: ['Storybook', 'Sentry', 'Core Web Vitals', 'Next.js'] },
+	{ label: 'POKING AT NOW', variant: 'dashed', items: ['AI-assisted dev', 'ESP32', 'Game Modding'] },
 ];
 
 export default function Skills() {
