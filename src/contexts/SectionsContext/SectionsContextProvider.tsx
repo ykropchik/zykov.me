@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useReducedMotionConfig } from 'motion/react';
-import { keystrokes, timing } from '../../animations.ts';
+import { keystrokes, timing } from '../../misc/animations.ts';
 import SectionsContext, { type Phase, type SectionInfo } from './SectionsContext.ts';
-import Duration from '../../Duration.ts';
+import Duration from '../../misc/Duration.ts';
 import type { NonEmptyArray } from '../../misc/nonEmptyArray.ts';
 
 type State = {

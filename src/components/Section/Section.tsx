@@ -2,7 +2,7 @@ import { useContext, useRef } from 'react';
 import * as motion from 'motion/react-m';
 import * as React from 'react';
 import classNames from 'classnames';
-import { outputVariants, timing } from '../../animations.ts';
+import { outputVariants, timing } from '../../misc/animations.ts';
 import SectionsContext, { type Phase } from '../../contexts/SectionsContext/SectionsContext.ts';
 import useBlockVariants from '../../hooks/useBlockVariants.ts';
 import useSectionPager from '../../hooks/useSectionPager.ts';

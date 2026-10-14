@@ -2,9 +2,9 @@ import { Fragment } from 'react';
 import classNames from 'classnames';
 import { useReducedMotionConfig } from 'motion/react';
 import * as motion from 'motion/react-m';
-import { blockInstantVariants, typing } from '../../animations.ts';
+import { blockInstantVariants, typing } from '../../misc/animations.ts';
 import styles from './TerminalLine.module.scss';
-import Duration from '../../Duration.ts';
+import Duration from '../../misc/Duration.ts';
 
 type TerminalMode = 'waiting' | 'typing' | 'entered' | 'static';
 

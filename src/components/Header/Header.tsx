@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { AnimatePresence, useReducedMotionConfig, type Transition } from 'motion/react';
 import * as motion from 'motion/react-m';
-import { timing } from '../../animations.ts';
+import { timing } from '../../misc/animations.ts';
 import { MenuIcon } from '../Icons/Icons.tsx';
 import SectionsContext from '../../contexts/SectionsContext/SectionsContext.ts';
 import SidebarContext from '../../contexts/SidebarContext/SidebarContext.ts';
