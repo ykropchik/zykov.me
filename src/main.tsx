@@ -23,7 +23,7 @@ createRoot(document.getElementById('root')!).render(
 							<>
 								I’m a frontend engineer. The best part of my job is simple: somewhere, someone clicks a button I made and their day gets a little easier.
 								<br />
-								This isn’t a <a>CV</a> — just me, telling you about myself.
+								This isn’t a <a href="/Mikhail_Zykov_Frontend_Engineer_CV.pdf" target="_blank" rel="noopener">CV</a> — just me, telling you about myself.
 							</>
 						)}
 					>
