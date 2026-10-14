@@ -3,8 +3,6 @@ import { createRoot } from 'react-dom/client';
 import { domAnimation, LazyMotion, MotionConfig } from 'motion/react';
 import Page from './components/Page/Page.tsx';
 import Section from './components/Section/Section.tsx';
-import Work from './components/Work/Work.tsx';
-import Skills from './components/Skills/Skills.tsx';
 import Contacts from './components/Contacts/Contacts.tsx';
 import Stats from './components/Stats/Stats.tsx';
 import ScrollHint from './components/ScrollHint/ScrollHint.tsx';
@@ -45,8 +43,6 @@ createRoot(document.getElementById('root')!).render(
 						title="Where I’ve been"
 						subtitle={<>The short version. The long one lives in my <a href="#cv">CV</a></>}
 					>
-						<Work />
-						<Skills />
 					</Section>
 					<Section
 						name="contact"
