@@ -1,0 +1,71 @@
+@use '@styles/variables' as *;
+
+.principles {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	// Counts from 00
+	counter-reset: principle -1;
+}
+
+.principle {
+	// The built-in `list-item` counter only counts `display: list-item`, and a row is a flex.
+	counter-increment: principle;
+	display: flex;
+	gap: $space-2;
+	padding: $space-6 0;
+	border-top: 1px solid token('line');
+
+	&:first-child {
+		padding-top: 0;
+		border-top: 0;
+	}
+
+	&:last-child {
+		padding-bottom: 0;
+	}
+
+	// Screen readers get the number from the list itself.
+	&::before {
+		flex: 0 0 40px;
+		content: counter(principle, decimal-leading-zero) / '';
+		@include type('code');
+		// Align with the title.
+		line-height: $heading-line-height;
+		color: token('teal');
+	}
+
+	@include below-sm {
+		flex-direction: column;
+
+		&::before {
+			flex: none;
+			line-height: $code-line-height;
+		}
+	}
+}
+
+.body {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: $space-2;
+
+	@include below-sm {
+		flex: none;
+	}
+}
+
+.title {
+	margin: 0;
+	@include type('heading');
+	color: token('ink');
+}
+
+.description {
+	@include type('body');
+	color: token('ink-muted');
+}
