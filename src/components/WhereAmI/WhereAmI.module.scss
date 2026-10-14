@@ -1,0 +1,166 @@
+@use '@styles/variables' as *;
+
+// Closed by dividers on both ends, like a table.
+.rows {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border-bottom: 1px solid token('line');
+}
+
+// The question on the left, the answer beside it; stacked on phones.
+.row {
+	display: flex;
+	padding: $space-6 0;
+	border-top: 1px solid token('line');
+	align-items: baseline;
+	gap: $space-8;
+
+	@include below-sm {
+		flex-direction: column;
+		align-items: stretch;
+		gap: $space-4;
+	}
+}
+
+.rowTitle {
+	flex: 0 0 240px;
+	margin: 0;
+	@include type('heading');
+	color: token('ink');
+
+	@include below-sm {
+		flex: none;
+	}
+}
+
+.block,
+.stack,
+.location {
+	flex: 1;
+	min-width: 0;
+
+	@include below-sm {
+		flex: none;
+	}
+}
+
+.block {
+	display: flex;
+	flex-direction: column;
+	gap: $space-2;
+}
+
+.headline {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: $space-4;
+
+	@include below-sm {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: $space-2;
+	}
+}
+
+.headlineTitle {
+	@include type('heading');
+	color: token('ink');
+
+	@include below-sm {
+		font-size: $lead-font-size-sm;
+		line-height: $lead-line-height-sm;
+	}
+}
+
+.at {
+	font-weight: $body-font-weight;
+	color: token('ink-muted');
+}
+
+.meta {
+	@include type('code');
+	color: token('ink-muted');
+}
+
+// On phones the period leads the job, the coordinates still follow the city.
+.block .meta {
+	@include below-sm {
+		order: -1;
+	}
+}
+
+.description {
+	@include type('body');
+	color: token('ink-muted');
+}
+
+.stack {
+	display: flex;
+	flex-direction: column;
+	gap: $space-4;
+}
+
+.group {
+	display: flex;
+	align-items: center;
+	gap: $space-4;
+
+	@include below-sm {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: $space-2;
+	}
+}
+
+.label {
+	@include type('label');
+	color: token('ink-muted');
+}
+
+.group .label {
+	flex: 0 0 160px;
+
+	@include below-sm {
+		flex: none;
+	}
+}
+
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $space-2;
+}
+
+.location {
+	display: flex;
+	flex-direction: column;
+	gap: $space-4;
+}
+
+.facts {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: $space-4;
+	margin: 0;
+
+	@include below-sm {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.fact {
+	display: flex;
+	flex-direction: column;
+	gap: $space-2;
+}
+
+.value {
+	margin: 0;
+	@include type('body');
+	color: token('ink');
+}

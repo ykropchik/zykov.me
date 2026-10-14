@@ -6,6 +6,7 @@ import Section from './components/Section/Section.tsx';
 import Contacts from './components/Contacts/Contacts.tsx';
 import Stats from './components/Stats/Stats.tsx';
 import ScrollHint from './components/ScrollHint/ScrollHint.tsx';
+import WhereAmI from './components/WhereAmI/WhereAmI.tsx';
 
 import './styles/index.scss';
 
@@ -43,6 +44,15 @@ createRoot(document.getElementById('root')!).render(
 						title="Where I’ve been"
 						subtitle={<>The short version. The long one lives in my <a href="#cv">CV</a></>}
 					>
+						<Principles />
+					</Section>
+					<Section
+						name="whereami"
+						description="where am I"
+						title={<>Where am I<mark>…</mark></>}
+						subtitle="Depends on what you’re asking."
+					>
+						<WhereAmI />
 					</Section>
 					<Section
 						name="contact"
