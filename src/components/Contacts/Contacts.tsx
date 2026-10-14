@@ -6,12 +6,12 @@ export default function Contacts() {
 	return (
 		<div className={styles.contacts}>
 			<div className={styles.contactsGroup}>
-				<Contact href="#telegram" label="TELEGRAM" value="[@handle]" icon={<TelegramIcon />} />
-				<Contact href="mailto:you@example.com" label="EMAIL" value="[you@example.com]" icon={<EmailIcon />} />
+				<Contact href="https://t.me/zykov_mg" label="TELEGRAM" value="@zykov_mg" icon={<TelegramIcon />} />
+				<Contact href="mailto:zykov.mg@gmail.com" label="EMAIL" value="zykov.mg@gmail.com" icon={<EmailIcon />} />
 			</div>
 			<div className={styles.contactsGroup}>
-				<Contact href="#linkedin" label="LINKEDIN" value="[linkedin.com/in/handle]" icon={<LinkedinIcon />} />
-				<Contact href="#github" label="GITHUB" value="[github.com/handle]" icon={<GitHubIcon />} />
+				<Contact href="https://www.linkedin.com/in/zykov-mg/" label="LINKEDIN" value="Misha Zykov" icon={<LinkedinIcon />} />
+				<Contact href="https://github.com/ykropchik" label="GITHUB" value="ykropchik" icon={<GitHubIcon />} />
 			</div>
 		</div>
 	);

@@ -15,7 +15,7 @@ export default function Contact({ href, icon, label, value }: ContactProps) {
 	const blockVariants = useBlockVariants();
 
 	return (
-		<motion.a className={styles.contact} href={href} variants={blockVariants}>
+		<motion.a className={styles.contact} href={href} target="_blank" variants={blockVariants}>
 			<span className={styles.badge}>
 				{icon}
 			</span>
