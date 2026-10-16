@@ -4,6 +4,7 @@ import { domAnimation, LazyMotion, MotionConfig } from 'motion/react';
 import Page from './components/Page/Page.tsx';
 import Section from './components/Section/Section.tsx';
 import Contacts from './components/Contacts/Contacts.tsx';
+import { ArrowUpRightIcon } from './components/Icons/Icons.tsx';
 import Stats from './components/Stats/Stats.tsx';
 import ScrollHint from './components/ScrollHint/ScrollHint.tsx';
 import Work from './components/Work/Work.tsx';
@@ -23,7 +24,7 @@ createRoot(document.getElementById('root')!).render(
 							<>
 								I’m a frontend engineer. The best part of my job is simple: somewhere, someone clicks a button I made and their day gets a little easier.
 								<br />
-								This isn’t a <a href="/Mikhail_Zykov_Frontend_Engineer_CV.pdf" target="_blank" rel="noopener">CV</a> — just me, telling you about myself.
+								This isn’t a <a href="/Mikhail_Zykov_Frontend_Engineer_CV.pdf" target="_blank" rel="noopener" className="link-with-arrow">CV<ArrowUpRightIcon size={16} /></a> — just me, telling you about myself.
 							</>
 						)}
 					>
