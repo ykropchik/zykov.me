@@ -5,6 +5,7 @@ import useTouch from '../../hooks/useTouch.ts';
 import { timing } from '../../misc/animations.ts';
 import SectionsContext from '../../contexts/SectionsContext/SectionsContext.ts';
 import { CloseIcon } from '../Icons/Icons.tsx';
+import CvLink from '../CvLink/CvLink.tsx';
 import TerminalLine from '../TerminalLine/TerminalLine.tsx';
 import styles from './Sidebar.module.scss';
 
@@ -105,6 +106,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 								# {isTouch ? 'tap' : 'click'} a line to jump there
 							</div>
 							<TerminalLine path={homePath} mode="waiting" />
+						</div>
+						<div className={styles.footer}>
+							<CvLink variant="button" />
 						</div>
 					</motion.div>
 				</div>

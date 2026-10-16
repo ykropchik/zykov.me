@@ -1,0 +1,27 @@
+@use '@styles/variables' as *;
+
+.cvLink {
+	white-space: nowrap;
+}
+
+.inline svg {
+	margin-left: 2px;
+}
+
+.button {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: $space-2;
+	height: 44px;
+	padding: 0 $space-4;
+	color: token('on-teal');
+	font-weight: 500;
+	background-color: token('teal');
+	border-radius: $radius-md;
+
+	&:hover {
+		text-decoration: none;
+	}
+}

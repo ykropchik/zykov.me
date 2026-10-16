@@ -80,6 +80,16 @@
 	}
 }
 
+.footer {
+	margin-top: auto;
+	padding: $space-8;
+	border-top: 1px solid token('line');
+
+	@include below-sm {
+		padding: $space-6 $space-4;
+	}
+}
+
 .group {
 	display: flex;
 	flex-direction: column;
