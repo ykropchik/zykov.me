@@ -9,7 +9,7 @@ type Story = {
 	label: string;
 	metric: { value: string; caption: string };
 	problem: string;
-	tried: string;
+	fix: string;
 	result: string;
 };
 
@@ -19,15 +19,15 @@ const stories: Story[] = [
 		label: 'FARPOST · VERIFICATION PAGE',
 		metric: { value: '×2', caption: 'completed seller verifications' },
 		problem: 'One scary form for everyone — sellers couldn’t tell which fields were meant for them.',
-		tried: 'Split the fields into tabs by seller status, so everyone sees only what’s theirs. Plus a fresh look and hints along the way.',
+		fix: 'Split the fields into tabs by seller status, so everyone sees only what’s theirs. Plus a fresh look and hints along the way.',
 		result: 'Twice as many sellers made it through.',
 	},
 	{
 		file: 'bundle.md',
 		label: 'FARPOST · BUILD',
 		metric: { value: '−47%', caption: 'JS bundle size' },
-		problem: 'Code splitting with RequireJS was done by hand — so code got duplicated, or inlined somewhere it already had its own entry.',
-		tried: 'Moved to Webpack and let it own the splitting. Adding a module got simpler, and Webpack could optimize the bundle on its own.',
+		problem: 'We split code by hand in RequireJS, so the same module often shipped twice — copied into several bundles, or inlined into one even though it already had its own entry point.',
+		fix: 'Moved to Webpack and let it own the splitting. Adding a module got simpler, and Webpack could optimize the bundle on its own.',
 		result: 'The JS bundle shrank to about half its old size.',
 	},
 	{
@@ -35,12 +35,12 @@ const stories: Story[] = [
 		label: 'FARPOST · STORYBOOK',
 		metric: { value: '1 place', caption: 'for every component and its states' },
 		problem: 'Designers couldn’t easily see how components really looked in production — so the same button ended up with several versions.',
-		tried: 'Set up Storybook: every component and all its states — default, hover, disabled, loading — in one place.',
+		fix: 'Set up Storybook: every component and all its states — default, hover, disabled, loading — in one place.',
 		result: 'Design and code finally looked at the same thing.',
 	},
 ];
 
-const NOTES = ['problem', 'tried', 'result'] as const;
+const NOTES = ['problem', 'fix', 'result'] as const;
 
 type StoriesProps = {
 	className?: string;
