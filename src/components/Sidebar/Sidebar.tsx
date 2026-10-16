@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { AnimatePresence, useReducedMotionConfig, type Transition } from 'motion/react';
 import * as motion from 'motion/react-m';
+import useTouch from '../../hooks/useTouch.ts';
 import { timing } from '../../misc/animations.ts';
 import SectionsContext from '../../contexts/SectionsContext/SectionsContext.ts';
 import { CloseIcon } from '../Icons/Icons.tsx';
@@ -23,6 +24,7 @@ type SidebarProps = {
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 	const { sections, firstSection, go, pathFor } = useContext(SectionsContext);
 	const reduced = useReducedMotionConfig();
+	const isTouch = useTouch();
 	const [, ...links] = sections;
 	const homePath = firstSection ? pathFor(firstSection.name) : [];
 
@@ -100,8 +102,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 								))}
 							</nav>
 							<div className={styles.hint}>
-								<span className={styles.hintClick}># click a line to jump there</span>
-								<span className={styles.hintTap}># tap a line to jump there</span>
+								# {isTouch ? 'tap' : 'click'} a line to jump there
 							</div>
 							<TerminalLine path={homePath} mode="waiting" />
 						</div>

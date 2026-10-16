@@ -144,19 +144,3 @@
 	color: token('ink-muted');
 	margin-bottom: $space-2;
 }
-
-// The two artboards differ only in "click" vs "tap", which is really about the
-// input device rather than the viewport — so ask about hover, not width.
-.hintTap {
-	display: none;
-}
-
-@media (hover: none) {
-	.hintClick {
-		display: none;
-	}
-
-	.hintTap {
-		display: inline;
-	}
-}
