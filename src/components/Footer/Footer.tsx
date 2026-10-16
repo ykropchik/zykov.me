@@ -42,7 +42,7 @@ export default function Footer() {
 				>
 					<div className={styles.content}>
 						<mark>~/</mark>
-						<span>© 2026 Misha Zykov · built at night, deployed&nbsp;in&nbsp;the&nbsp;morning</span>
+						<span>© 2026 Mikhail “Misha” Zykov · built at night, deployed&nbsp;in&nbsp;the&nbsp;morning</span>
 					</div>
 				</motion.footer>
 			)}
