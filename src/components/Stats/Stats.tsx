@@ -9,7 +9,7 @@ export default function Stats() {
 	return (
 		<motion.div className={styles.stats} variants={blockVariants}>
 			<div className={styles.statsGroup}>
-				<Stat value="10" label="years writing code" />
+				<Stat value="10" label="years since my first line of code" />
 				<Stat value="3,873" label="anime episodes watched" />
 			</div>
 			<div className={styles.statsGroup}>
