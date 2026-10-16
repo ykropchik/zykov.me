@@ -1,11 +1,21 @@
 import * as motion from 'motion/react-m';
 import useBlockVariants from '../../hooks/useBlockVariants.ts';
+import useTouch from '../../hooks/useTouch.ts';
 import { ArrowDownIcon, ArrowUpIcon } from '../Icons/Icons.tsx';
 import styles from './ScrollHint.module.scss';
 
-/** Tells the reader how to turn the page; hidden on touch screens, which have no arrow keys. */
+/** Tells the reader how to turn the page: arrow keys on desktop, a swipe on touch screens. */
 export default function ScrollHint() {
 	const blockVariants = useBlockVariants();
+	const isTouch = useTouch();
+
+	if (isTouch) {
+		return (
+			<motion.p className={styles.hint} variants={blockVariants}>
+				# swipe up to look around
+			</motion.p>
+		);
+	}
 
 	return (
 		<motion.p className={styles.hint} variants={blockVariants}>
