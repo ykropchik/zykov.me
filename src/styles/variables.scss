@@ -108,6 +108,15 @@ $breakpoint-sm: 600px; // Below this width: phone sizes for title and lead
 	}
 }
 
+$breakpoint-xs: 424px;
+
+// Usage: @include below-xs { ... }
+@mixin below-xs {
+	@media (max-width: #{$breakpoint-xs}) {
+		@content;
+	}
+}
+
 $font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 $font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 

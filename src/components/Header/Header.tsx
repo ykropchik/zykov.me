@@ -47,7 +47,7 @@ export default function Header() {
 					aria-label="Back to top"
 					onClick={() => firstSection && go(firstSection.name)}
 				>
-					anonym@www: <mark>~/</mark><span className={styles.pathSegment}>{home}</span>
+					<span className={styles.host}>anonym@www: </span><mark>~/</mark><span className={styles.pathSegment}>{home}</span>
 					{/* The slash moves only on the way to and from home; between sections just the name changes. */}
 					<AnimatePresence initial={false}>
 						{section && (

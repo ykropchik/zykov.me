@@ -53,6 +53,12 @@
 	cursor: pointer;
 }
 
+.host {
+	@include below-xs {
+		display: none;
+	}
+}
+
 .pathAnimate {
 	position: relative;
 	display: inline-block;
