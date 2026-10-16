@@ -35,7 +35,7 @@ createRoot(document.getElementById('root')!).render(
 						title="A bit about me"
 						subtitle="Where it started, and what keeps me busy now."
 					>
-						<Section.Text>It started back in school, when I decided to build a weather station on Arduino. Seeing something I’d made actually work hooked me for good. At university I fell for the web: no soldering required, and anything I build is just one link away from anyone. I’ve been here ever since.</Section.Text>
+						<Section.Text>It started back in school, when I built a weather station with an Arduino. Seeing something I’d made actually work hooked me for good. At university I fell for the web: no soldering required, and anything I build is just one link away from anyone. I’ve been at it ever since.</Section.Text>
 						<Section.Text className="muted-text">Honestly, most of my hobbies come with a screen: microcontrollers, video games, anime. Then there’s JDM. I love the car culture, even if I couldn’t explain what’s going on under the hood, so Forza Horizon is my garage for now. Someday, I hope, I’ll see it all in Japan — the cars, the anime, all of it, off the screen for once.</Section.Text>
 						<Stats />
 					</Section>
