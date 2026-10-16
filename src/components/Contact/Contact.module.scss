@@ -13,6 +13,9 @@
 	background-color: token('surface-raised');
 	border: 1px solid token('line');
 	border-radius: $radius-md;
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
 
 	&:hover {
 		background-color: token('teal-soft');
