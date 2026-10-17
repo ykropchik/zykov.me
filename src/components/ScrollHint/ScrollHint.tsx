@@ -3,9 +3,10 @@ import useBlockVariants from '../../hooks/useBlockVariants.ts';
 import useTouch from '../../hooks/useTouch.ts';
 import { ArrowDownIcon, ArrowUpIcon } from '../Icons/Icons.tsx';
 import styles from './ScrollHint.module.scss';
+import withClientOnly from '../../misc/withClientOnly.tsx';
 
 /** Tells the reader how to turn the page: arrow keys on desktop, a swipe on touch screens. */
-export default function ScrollHint() {
+const ScrollHint = withClientOnly(() => {
 	const blockVariants = useBlockVariants();
 	const isTouch = useTouch();
 
@@ -25,4 +26,6 @@ export default function ScrollHint() {
 			<span>to look around</span>
 		</motion.p>
 	);
-}
+});
+
+export default ScrollHint;

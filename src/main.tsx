@@ -1,5 +1,4 @@
 import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
 import { domAnimation, LazyMotion, MotionConfig } from 'motion/react';
 import Page from './components/Page/Page.tsx';
 import Section from './components/Section/Section.tsx';
@@ -9,10 +8,11 @@ import Stats from './components/Stats/Stats.tsx';
 import ScrollHint from './components/ScrollHint/ScrollHint.tsx';
 import Work from './components/Work/Work.tsx';
 import WhereAmI from './components/WhereAmI/WhereAmI.tsx';
+import { ViteReactSSG } from 'vite-react-ssg/single-page';
 
 import './styles/index.scss';
 
-createRoot(document.getElementById('root')!).render(
+export const createRoot = ViteReactSSG(
 	<StrictMode>
 		<MotionConfig reducedMotion="user">
 			<LazyMotion features={domAnimation} strict>

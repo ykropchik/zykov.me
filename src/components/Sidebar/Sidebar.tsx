@@ -8,6 +8,7 @@ import { CloseIcon } from '../Icons/Icons.tsx';
 import CvLink from '../CvLink/CvLink.tsx';
 import TerminalLine from '../TerminalLine/TerminalLine.tsx';
 import styles from './Sidebar.module.scss';
+import withClientOnly from '../../misc/withClientOnly.tsx';
 
 const ARRIVE: Transition = { duration: timing.sidebarInOut.seconds, ease: 'easeOut' };
 const DEPART: Transition = { duration: timing.sidebarInOut.seconds, ease: 'easeIn' };
@@ -22,7 +23,7 @@ type SidebarProps = {
 	onClose: () => void;
 };
 
-export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+const Sidebar = withClientOnly(({ isOpen, onClose }: SidebarProps) => {
 	const { sections, firstSection, go, pathFor } = useContext(SectionsContext);
 	const reduced = useReducedMotionConfig();
 	const isTouch = useTouch();
@@ -115,4 +116,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 			)}
 		</AnimatePresence>
 	);
-}
+});
+
+export default Sidebar;
