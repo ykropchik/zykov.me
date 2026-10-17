@@ -30,6 +30,7 @@
 	// Screen readers get the number from the list itself.
 	&::before {
 		flex: 0 0 40px;
+		content: counter(principle, decimal-leading-zero); // fallback for Safari and Firefox (don't support alternative text)
 		content: counter(principle, decimal-leading-zero) / '';
 		@include type('code');
 		// Align with the title.
