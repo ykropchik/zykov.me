@@ -20,7 +20,7 @@ const stories: Story[] = [
 		metric: { value: '×2', caption: 'completed seller verifications' },
 		problem: 'One scary form for everyone — sellers couldn’t tell which fields were meant for them.',
 		fix: 'Split the fields into tabs by seller status, so everyone sees only what’s theirs. Plus a fresh look and hints along the way.',
-		result: 'Twice as many sellers made it through.',
+		result: 'Twice as many sellers made it through, and verified accounts grew by 10%.',
 	},
 	{
 		file: 'bundle.md',
@@ -35,7 +35,7 @@ const stories: Story[] = [
 		label: 'FARPOST · STORYBOOK',
 		metric: { value: '1 place', caption: 'for every component and its states' },
 		problem: 'Designers couldn’t easily see how components really looked in production — so the same button ended up with several versions.',
-		fix: 'Set up Storybook: every component and all its states — default, hover, disabled, loading — in one place.',
+		fix: 'Set up Storybook: every component and all its states, plus a fresh build for every branch.',
 		result: 'Design and code finally looked at the same thing.',
 	},
 ];

@@ -4,8 +4,8 @@ import Tag, { type TagVariant } from '../Tag/Tag.tsx';
 import styles from './WhereAmI.module.scss';
 
 const stack: { label: string; variant: TagVariant; items: string[] }[] = [
-	{ label: 'EVERY DAY', variant: 'solid', items: ['TypeScript', 'React', 'SCSS', 'Webpack & SWC'] },
-	{ label: 'COMFORTABLE WITH', variant: 'outline', items: ['Storybook', 'Sentry', 'Core Web Vitals', 'Next.js'] },
+	{ label: 'EVERY DAY', variant: 'solid', items: ['TypeScript', 'React', 'Webpack & SWC', 'Core Web Vitals'] },
+	{ label: 'COMFORTABLE WITH', variant: 'outline', items: ['Node.js & SSR', 'Storybook', 'Sentry', 'Next.js'] },
 	{ label: 'POKING AT NOW', variant: 'dashed', items: ['AI-assisted dev', 'ESP32', 'Game Modding'] },
 ];
 
@@ -21,7 +21,7 @@ export default function WhereAmI() {
 						<span className={styles.headlineTitle}>
 							Frontend Engineer <span className={styles.at}>at</span> FarPost
 						</span>
-						<span className={styles.meta}>Feb 2022 — now</span>
+						<span className={styles.meta}>Feb 2022 – now</span>
 					</div>
 					<div className={styles.description}>Making a marketplace for millions of users a little faster and friendlier.</div>
 				</div>
