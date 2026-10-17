@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite-react-ssg build",
+    "build": "tsc -b && vite-react-ssg build && node scripts/postbuild.mjs",
     "lint-js": "eslint .",
     "lint-styles": "stylelint ./src/**/*.scss",
     "preview": "vite preview"
