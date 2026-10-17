@@ -32,6 +32,10 @@
 	@include theme-vars($theme-dark);
 }
 
+::selection {
+	background-color: token('teal-soft');
+}
+
 html {
 	background-color: token('surface');
 	overscroll-behavior-y: none;
