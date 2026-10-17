@@ -15,6 +15,7 @@ $on-teal-dark:        #04110f; // Text and icons on a teal fill
 $amber-dark:          #fbbf24; // Warnings and pending states
 $danger-dark:         #f87171; // Errors and destructive actions
 $link-dark:           $teal-dark; // Alias of teal
+$backdrop-dark:        rgba(11, 15, 14, 0.72); // Dim layer behind modals, sidebars, drawers (surface at 72%)
 
 // ---------------------------------------------------------------------------
 // Color — light theme
@@ -31,6 +32,7 @@ $on-teal-light:        #ffffff;
 $amber-light:          #a16207;
 $danger-light:         #b91c1c;
 $link-light:           $teal-light;
+$backdrop-light:        rgba(13, 21, 19, 0.40); // ink at 40%
 
 // ---------------------------------------------------------------------------
 // Color — defaults (dark)
@@ -62,6 +64,7 @@ $theme-dark: (
 	'amber':          $amber-dark,
 	'danger':         $danger-dark,
 	'link':           $link-dark,
+	'backdrop':       $backdrop-dark,
 );
 
 $theme-light: (
@@ -77,6 +80,7 @@ $theme-light: (
 	'amber':          $amber-light,
 	'danger':         $danger-light,
 	'link':           $link-light,
+	'backdrop':       $backdrop-light,
 );
 
 // Emits a theme as CSS custom properties: --surface, --ink, ...

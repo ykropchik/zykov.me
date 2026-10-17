@@ -12,7 +12,7 @@
 .backdrop {
 	position: absolute;
 	inset: 0;
-	background-color: color-mix(in srgb, token('surface') 72%, transparent);
+	background-color: token('backdrop');
 }
 
 .panel {
