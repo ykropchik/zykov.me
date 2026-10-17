@@ -41,8 +41,10 @@ export default function Footer() {
 					exit={{ ...away, transition: DEPART }}
 				>
 					<div className={styles.content}>
-						<mark>~/</mark>
-						<span>© 2026 Mikhail “Misha” Zykov · built at night, deployed&nbsp;in&nbsp;the&nbsp;morning</span>
+						<div className={styles.copyright}>
+							<span>© 2026 Mikhail “Misha” Zykov</span>
+							<span>built&nbsp;at&nbsp;night, deployed&nbsp;in&nbsp;the&nbsp;morning</span>
+						</div>
 					</div>
 				</motion.footer>
 			)}

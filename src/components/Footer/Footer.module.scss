@@ -16,22 +16,16 @@
 .content {
 	height: 100%;
 	box-sizing: border-box;
-	padding: 0 $space-6;
+	padding: $space-3 $space-6;
 	max-width: 1120px;
 	margin: 0 auto;
 	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
+}
+
+.copyright {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	gap: $space-2;
 	color: token('ink-muted');
-}
-
-.separator {
-	@include below-sm {
-		display: none;
-	}
-}
-
-.path {
-	color: token('ink');
 }
