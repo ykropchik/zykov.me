@@ -13,6 +13,8 @@ import { useEffect, useRef, type RefObject } from 'react';
  * burst already running when a section arrives began before there was anything to
  * leave, so it owes CARRY_PX instead of THRESHOLD_PX — far enough that the tail of
  * a coast cannot cover it, close enough that a hand still moving gets there.
+ * Nor may it scroll the arriving section's content: once the old section is
+ * hidden, the browser hands its momentum to whatever is under the pointer.
  *
  * One reader has one pointer, so both the burst and the section being left are
  * module-global, and the listeners are installed on `window` once and never
@@ -46,6 +48,11 @@ const burst = {
 	 * `late`     — began before the section settled, so it owes CARRY_PX.
 	 */
 	spent: false as false | 'turned' | 'scrolled' | 'late',
+	/**
+	 * Outlived the section it began on. Its momentum lands on the next section once
+	 * the old one is hidden, so it may not scroll that section's content.
+	 */
+	stale: false,
 	endTimer: 0,
 };
 
@@ -63,6 +70,7 @@ function isBlocked() {
 function endBurst() {
 	burst.streaming = false;
 	burst.spent = false;
+	burst.stale = false;
 	burst.pushed = 0;
 }
 
@@ -140,8 +148,11 @@ function listen() {
 
 	window.addEventListener('wheel', (event) => {
 		keepAlive();
+		if (burst.stale) {
+			event.preventDefault();
+		}
 		push(event.deltaY);
-	}, { passive: true });
+	}, { passive: false });
 
 	// Touch never coasts into this hook — after `touchend` the browser flings the page
 	// itself and sends no further `touchmove` — so a finger going down starts a burst
@@ -151,6 +162,7 @@ function listen() {
 		clearTimeout(burst.endTimer);
 		burst.streaming = true;
 		burst.spent = false;
+		burst.stale = false;
 		burst.pushed = 0;
 	}, { passive: true });
 
@@ -219,6 +231,9 @@ export default function useSectionPager(
 		target.turn = (direction) => latest.current(direction);
 
 		return () => {
+			if (burst.streaming) {
+				burst.stale = true;
+			}
 			target.element = null;
 			target.turn = null;
 		};

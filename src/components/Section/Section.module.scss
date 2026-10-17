@@ -5,40 +5,115 @@
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	overflow-y: auto;
-	// There is nothing to hand the gesture on to — turning the page is the pager's
-	// job, not the browser's.
-	overscroll-behavior: contain;
 }
 
 .inactive {
 	display: none;
 }
 
-// The footer floats over the bottom of the stage, so the section it belongs to
-// holds its content clear of it.
-.withFooter .inner {
-	padding-bottom: $space-16 + $footer-height;
+// Centres the screen when it fits, and collapses to the section's height when it
+// doesn't — every level down to the scroller gives way (`min-height: 0`), so the
+// squeeze lands on the scroller and the prompts around it keep their size.
+.frame {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+	margin: auto 0;
+	padding: $space-16 0;
+
+	// A phone has no height to spare around a screen that scrolls.
+	@include below-sm {
+		padding: $space-6 0;
+	}
 }
 
-.inner {
+// The footer floats over the bottom of the stage, so the section it belongs to
+// holds its content clear of it.
+.withFooter .frame {
+	padding-bottom: $space-16 + $footer-height;
+
+	@include below-sm {
+		padding-bottom: $space-6 + $footer-height;
+	}
+}
+
+// The scroller spans the whole width so the thumb sits at the screen's edge; the
+// text inside it, and the prompts around it, keep to this column.
+.column {
 	box-sizing: border-box;
 	width: 100%;
 	max-width: 1120px;
-	// Centres the content when it fits, and collapses to 0 when it doesn't —
-	// unlike `justify-content: center`, which would put the overflow out of
-	// reach above the top of the scroller.
-	margin: auto;
-	padding: $space-16 $space-6;
-	// A flex item shrinks by default; taller-than-viewport content has to keep
-	// its height for the section to scroll at all.
+	margin: 0 auto;
+	padding: 0 $space-6;
 	flex-shrink: 0;
 }
 
-// Plain block flow, so the margins below behave as they would without this
-// wrapper, which exists only to carry the stagger.
 .output {
-	display: block;
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+}
+
+.viewport {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+}
+
+$scroll-fade: 40px;
+
+// `--fade-top` and `--fade-bottom` (0 or 1), and the track and thumb geometry,
+// come from useScrollIndicator.
+.scroller {
+	$mask: linear-gradient(
+		to bottom,
+		transparent 0,
+		#000 calc(var(--fade-top, 0) * #{$scroll-fade}),
+		#000 calc(100% - var(--fade-bottom, 0) * #{$scroll-fade}),
+		transparent 100%
+	);
+
+	min-height: 0;
+	overflow-y: auto;
+	// There is nothing to hand the gesture on to — turning the page is the pager's
+	// job, not the browser's. `none` rather than `contain` also stops Safari's
+	// rubber-band bounce past the ends.
+	overscroll-behavior: none;
+	scrollbar-width: none;
+	-webkit-mask-image: $mask;
+	mask-image: $mask;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	// An outline outside would be cut off by the screen's edges.
+	&:focus-visible {
+		outline-offset: -2px;
+	}
+}
+
+// Contains the margins of the first and last blocks, which would otherwise fall
+// outside the scrollable area.
+.body {
+	display: flow-root;
+}
+
+.track {
+	position: absolute;
+	top: $space-2;
+	bottom: $space-2;
+	right: $space-2;
+	width: 2px;
+	pointer-events: none;
+	transition: opacity 200ms;
+}
+
+.thumb {
+	border-radius: 1px;
+	background-color: token('teal');
 }
 
 .title {
