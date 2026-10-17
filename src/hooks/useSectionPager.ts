@@ -8,8 +8,8 @@ import { useEffect, useRef, type RefObject } from 'react';
  * hand swiping steadily and a flick coasting at the same speed look identical
  * event by event, and differ only in that the coast eventually decays — which
  * takes time to observe, not cleverness. So the rule is about bursts of events
- * instead: one burst yields at most one page turn, none at all if it scrolled the
- * content on the way, and it is over when the events stop, whenever that is. A
+ * instead: one burst yields at most one page turn, none at all from the push that
+ * scrolled the content, and it is over when the events stop, whenever that is. A
  * burst already running when a section arrives began before there was anything to
  * leave, so it owes CARRY_PX instead of THRESHOLD_PX — far enough that the tail of
  * a coast cannot cover it, close enough that a hand still moving gets there.
@@ -44,7 +44,8 @@ const burst = {
 	streaming: false,
 	/**
 	 * `turned`   — has had its page turn; nothing more until the burst ends.
-	 * `scrolled` — moved the content instead, so it is not also a page turn.
+	 * `scrolled` — moved the content instead, so it is not also a page turn — until it
+	 *              drains against the content's end, where it becomes `late`.
 	 * `late`     — began before the section settled, so it owes CARRY_PX.
 	 */
 	spent: false as false | 'turned' | 'scrolled' | 'late',
@@ -93,10 +94,20 @@ function push(delta: number) {
 		return;
 	}
 
+	const { atTop, atBottom } = edgesOf(element);
+	const pinned = (delta > 0 && atBottom) || (delta < 0 && atTop);
+
 	if (burst.spent === 'scrolled') {
-		// The reader's own hand rather than a coast to be waited out, so there is no way
-		// back in: it ends when they stop.
-		return;
+		// Still moving the content, or still coasting hard against its end: the same push
+		// that scrolled it. macOS keeps sending a coast after the content stops, and a new
+		// swipe started inside it never leaves the 180ms gap that would end the burst.
+		if (!pinned || Math.abs(delta) > DRAINED_PX) {
+			return;
+		}
+		// Drained against the end: the tail of the coast, which CARRY_PX is beyond, or a
+		// reader pushing on, whose new swipe starts with small deltas too.
+		burst.spent = 'late';
+		burst.pushed = 0;
 	}
 
 	if (burst.spent === 'turned') {
@@ -110,7 +121,6 @@ function push(delta: number) {
 		burst.pushed = 0;
 	}
 
-	const { atTop, atBottom } = edgesOf(element);
 	if (delta > 0 && atBottom) {
 		burst.pushed = Math.max(burst.pushed, 0) + delta;
 	} else if (delta < 0 && atTop) {
