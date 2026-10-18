@@ -25,6 +25,9 @@
 			"simple": { "limit": 10, "period": 60 }
 		}
 	],
+	"triggers": {
+		"crons": ["0 3 * * 1"]
+	},
 	"observability": {
 		"logs": {
 			"enabled": true,

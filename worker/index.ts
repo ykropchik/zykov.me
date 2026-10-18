@@ -9,6 +9,9 @@
  *
  * An unknown event is dropped on its own rather than failing the batch: a tab
  * still running the previous deploy may send names that have since been retired.
+ *
+ * Events are kept forever, but a weekly cron strips the visitor and session ids
+ * from those older than half a year: the counts stay, the link to a person goes.
  */
 import { isKnownEvent } from '../src/misc/analyticsEvents.ts';
 
@@ -18,6 +21,10 @@ const MAX_EVENTS = 100;
 const DAILY_EVENT_BUDGET = 30_000;
 const MAX_PROPS = 10;
 const MAX_STRING = 200;
+const DAY_MS = 24 * 60 * 60 * 1000;
+const ANONYMIZE_AFTER_MS = 180 * DAY_MS;
+/** The budget only ever matters for today; older rows are kept a while just to look back at. */
+const BUDGET_KEEP_MS = 30 * DAY_MS;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 
 type Props = Record<string, string | number | boolean>;
@@ -116,6 +123,10 @@ async function readBody(request: Request): Promise<string | null> {
 	}
 }
 
+function dayOf(time: number): string {
+	return new Date(time).toISOString().slice(0, 10);
+}
+
 async function spendBudget(db: D1Database, day: string, events: number): Promise<boolean> {
 	const spent = await db
 		.prepare('INSERT INTO daily_budget (day, events) VALUES (?1, ?2) ON CONFLICT (day) DO UPDATE SET events = events + ?2 RETURNING events')
@@ -159,7 +170,7 @@ export default {
 		}
 
 		const now = Date.now();
-		if (!await spendBudget(env.DB, new Date(now).toISOString().slice(0, 10), batch.events.length)) {
+		if (!await spendBudget(env.DB, dayOf(now), batch.events.length)) {
 			return status(204);
 		}
 
@@ -179,5 +190,19 @@ export default {
 		)));
 
 		return status(204);
+	},
+
+	// Without an index on received_at both statements scan the whole table, which
+	// at this site's volume costs next to nothing once a week.
+	async scheduled(_controller, env) {
+		const now = Date.now();
+		await env.DB.batch([
+			env.DB
+				.prepare('UPDATE events SET visitor_id = NULL, session_id = NULL WHERE received_at < ? AND visitor_id IS NOT NULL')
+				.bind(now - ANONYMIZE_AFTER_MS),
+			env.DB
+				.prepare('DELETE FROM daily_budget WHERE day < ?')
+				.bind(dayOf(now - BUDGET_KEEP_MS)),
+		]);
 	},
 } satisfies ExportedHandler<Env>;
