@@ -4,6 +4,7 @@ import { keystrokes, timing } from '../../misc/animations.ts';
 import SectionsContext, { type Phase, type SectionInfo } from './SectionsContext.ts';
 import Duration from '../../misc/Duration.ts';
 import type { NonEmptyArray } from '../../misc/nonEmptyArray.ts';
+import { analytics } from '../../misc/Analytics.ts';
 
 type State = {
 	activeSection: SectionInfo;
@@ -158,9 +159,18 @@ export default function SectionsContextProvider({ homeDir, sections, children }:
 			return false;
 		}
 
+		analytics.track('section', 'turn', { from: activeSection.name, to: sections[to].name });
 		go(sections[to].name);
 		return true;
 	}, [go, sections]);
+
+	// Watched here rather than in `settle`: under reduced motion a section reaches
+	// `idle` straight from `arrive`, without ever reporting.
+	useEffect(() => {
+		if (state.phase === 'idle') {
+			analytics.track('section', 'settled', { section: state.activeSection.name });
+		}
+	}, [state.phase, state.activeSection.name]);
 
 	// The state the machine starts in is already that of a section part-way through
 	// an arrival; this sets that arrival running.
