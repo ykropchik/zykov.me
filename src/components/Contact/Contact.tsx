@@ -3,6 +3,7 @@ import * as motion from 'motion/react-m';
 import useBlockVariants from '../../hooks/useBlockVariants.ts';
 import { ArrowUpRightIcon, CheckIcon, CopyIcon } from '../Icons/Icons.tsx';
 import styles from './Contact.module.scss';
+import { analytics } from '../../misc/Analytics.ts';
 
 type ContactProps = {
 	icon: React.ReactElement;
@@ -24,6 +25,10 @@ export default function Contact({ href, copy, icon, label, value }: ContactProps
 		return () => clearTimeout(timer);
 	}, [copied]);
 
+	const trackClick = () => {
+		analytics.track('contact', 'click', { label });
+	};
+
 	const content = (
 		<>
 			<span className={styles.badge}>
@@ -41,9 +46,17 @@ export default function Contact({ href, copy, icon, label, value }: ContactProps
 
 	if (copy !== undefined) {
 		const handleCopy = () => {
+			trackClick();
+
 			navigator.clipboard.writeText(copy)
-				.then(() => setCopied(true), () => {})
-				.catch(() => window.open(href, '_blank'));
+				.then(() => {
+					analytics.track('clipboard', 'success');
+					setCopied(true);
+				})
+				.catch(() => {
+					analytics.track('clipboard', 'failed');
+					window.open(href, '_blank');
+				});
 		};
 
 		return (
@@ -54,7 +67,7 @@ export default function Contact({ href, copy, icon, label, value }: ContactProps
 	}
 
 	return (
-		<motion.a className={styles.contact} href={href} target="_blank" variants={blockVariants}>
+		<motion.a className={styles.contact} href={href} target="_blank" variants={blockVariants} onClick={trackClick}>
 			{content}
 		</motion.a>
 	);
