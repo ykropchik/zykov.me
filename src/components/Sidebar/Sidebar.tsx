@@ -9,6 +9,7 @@ import CvLink from '../CvLink/CvLink.tsx';
 import TerminalLine from '../TerminalLine/TerminalLine.tsx';
 import styles from './Sidebar.module.scss';
 import withClientOnly from '../../misc/withClientOnly.tsx';
+import { analytics } from '../../misc/Analytics.ts';
 
 const ARRIVE: Transition = { duration: timing.sidebarInOut.seconds, ease: 'easeOut' };
 const DEPART: Transition = { duration: timing.sidebarInOut.seconds, ease: 'easeIn' };
@@ -90,6 +91,7 @@ const Sidebar = withClientOnly(({ isOpen, onClose }: SidebarProps) => {
 										key={link.name}
 										type="button"
 										onClick={() => {
+											analytics.track('sidebar', 'item_click', { item: link.name });
 											go(link.name);
 											onClose();
 										}}
