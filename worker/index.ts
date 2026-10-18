@@ -11,7 +11,8 @@
  * still running the previous deploy may send names that have since been retired.
  *
  * Events are kept forever, but a weekly cron strips the visitor and session ids
- * from those older than half a year: the counts stay, the link to a person goes.
+ * from those older than half a year and rounds their times down to the UTC day:
+ * the counts stay, the link to a person goes.
  */
 import { isKnownEvent } from '../src/misc/analyticsEvents.ts';
 
@@ -198,8 +199,12 @@ export default {
 		const now = Date.now();
 		await env.DB.batch([
 			env.DB
-				.prepare('UPDATE events SET visitor_id = NULL, session_id = NULL WHERE received_at < ? AND visitor_id IS NOT NULL')
-				.bind(now - ANONYMIZE_AFTER_MS),
+				.prepare(`
+					UPDATE events
+					SET visitor_id = NULL, session_id = NULL, ts = ts - ts % ?1, received_at = received_at - received_at % ?1
+					WHERE received_at < ?2 AND visitor_id IS NOT NULL
+				`)
+				.bind(DAY_MS, now - ANONYMIZE_AFTER_MS),
 			env.DB
 				.prepare('DELETE FROM daily_budget WHERE day < ?')
 				.bind(dayOf(now - BUDGET_KEEP_MS)),
