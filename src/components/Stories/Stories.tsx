@@ -3,6 +3,7 @@ import * as motion from 'motion/react-m';
 import classNames from 'classnames';
 import useBlockVariants from '../../hooks/useBlockVariants.ts';
 import styles from './Stories.module.scss';
+import { analytics } from '../../misc/Analytics.ts';
 
 type Story = {
 	file: string;
@@ -55,7 +56,11 @@ export default function Stories({ className }: StoriesProps) {
 	const panelId = (index: number) => `${id}-panel-${index}`;
 
 	const select = (index: number) => {
-		setActive((index + stories.length) % stories.length);
+		const newActive = (index + stories.length) % stories.length;
+
+		analytics.track('story', 'select', { name: stories[newActive].file });
+
+		setActive(newActive);
 	};
 
 	return (
