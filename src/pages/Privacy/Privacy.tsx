@@ -21,7 +21,9 @@ export default function Privacy({ homeDir }: PrivacyProps) {
 				title="Privacy — Misha Zykov"
 				description="What zykov.me records about visits, why, how long it is kept, and how to opt out."
 				path="/privacy"
-			/>
+			>
+				<meta name="robots" content="noindex" />
+			</PageMeta>
 			<Header homeDir={homeDir} />
 			<main className={styles.main}>
 				<div className={styles.intro}>
