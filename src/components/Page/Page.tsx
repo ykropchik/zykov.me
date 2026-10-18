@@ -19,11 +19,13 @@ export default function Page({ homeDir, children }: PageProps) {
 	return (
 		<SectionsContextProvider homeDir={homeDir} sections={sectionsOrder}>
 			<SidebarContextProvider>
-				<Header />
-				<main className={styles.main}>
-					{children}
-				</main>
-				<Footer />
+				<div className={styles.page}>
+					<Header homeDir={homeDir} />
+					<main className={styles.main}>
+						{children}
+					</main>
+					<Footer />
+				</div>
 			</SidebarContextProvider>
 		</SectionsContextProvider>
 	);

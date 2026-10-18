@@ -56,16 +56,6 @@ html {
 
 body {
 	margin: 0;
-	overflow: hidden;
-}
-
-#root {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	height: 100vh; // fallback if dvh doesn't support
-	height: 100dvh;
-	width: 100%;
 }
 
 *:focus-visible {

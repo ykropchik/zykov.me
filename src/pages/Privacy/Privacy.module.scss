@@ -1,0 +1,182 @@
+@use '@styles/variables' as *;
+
+// Same column as a home page section, so the text lines up under the header's path.
+.main {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 1120px;
+	margin: 0 auto;
+	padding: $space-16 $space-6;
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+}
+
+.intro {
+	max-width: 680px;
+	display: flex;
+	flex-direction: column;
+	gap: $space-4;
+}
+
+.title {
+	@include type('display');
+	color: token('ink');
+	margin: 0;
+}
+
+.updated {
+	@include type('code');
+	color: token('ink-muted');
+}
+
+.lead,
+.lead:not(:first-child) {
+	@include type('lead');
+	color: token('ink-muted');
+	margin: $space-2 0 0;
+}
+
+// Blocks are spaced by the flex gaps, so a paragraph carries no margin of its own —
+// including against `p:not(:first-child)` in index.scss.
+.document {
+	@include type('body');
+	max-width: 680px;
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+	color: token('ink-muted');
+
+	p,
+	p:not(:first-child) {
+		margin: 0;
+		color: inherit;
+	}
+
+	// Typed to outweigh the reset above.
+	p.questions {
+		padding-top: $space-6;
+		border-top: 1px solid token('line');
+		color: token('ink');
+	}
+}
+
+.chapter {
+	display: flex;
+	flex-direction: column;
+	gap: $space-4;
+	// Clear of the edge when a link jumps here.
+	scroll-margin-top: $space-8;
+}
+
+.heading {
+	@include type('heading');
+	color: token('ink');
+	margin: 0;
+}
+
+.hashes {
+	font-family: $font-mono;
+	font-size: $body-font-size;
+	font-weight: 400;
+	letter-spacing: normal;
+	color: token('teal');
+}
+
+.list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: $space-4;
+}
+
+.item {
+	display: grid;
+	grid-template-columns: $space-4 minmax(0, 1fr);
+	gap: $space-2;
+}
+
+.bullet {
+	font-family: $font-mono;
+	color: token('teal');
+}
+
+.term {
+	font-weight: 600;
+	color: token('ink');
+}
+
+.code {
+	font-family: $font-mono;
+	font-size: $code-font-size;
+	padding: 0 4px;
+	border-radius: $radius-sm;
+	background-color: token('surface-raised');
+	border: 1px solid token('line');
+}
+
+.visitor {
+	padding: $space-4;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: $space-4;
+	background-color: token('surface-raised');
+	border: 1px solid token('line');
+	border-radius: $radius-md;
+
+	@include below-sm {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+.visitorText {
+	display: flex;
+	flex-direction: column;
+	gap: $space-2;
+	min-width: 0;
+}
+
+.visitorLabel {
+	@include type('label');
+	color: token('ink-muted');
+}
+
+.visitorValue {
+	@include type('code');
+	color: token('teal');
+	overflow-wrap: anywhere;
+}
+
+.copy {
+	@include type('code');
+	box-sizing: border-box;
+	height: 32px;
+	flex-shrink: 0;
+	padding: 0 $space-3;
+	display: flex;
+	align-items: center;
+	gap: $space-2;
+	color: token('ink');
+	background: transparent;
+	border: 1px solid token('line-strong');
+	border-radius: $radius-md;
+	cursor: pointer;
+
+	&:hover:not(:disabled) {
+		background-color: token('teal-soft');
+	}
+
+	&:disabled {
+		color: token('ink-muted');
+		border-color: token('line');
+		cursor: default;
+	}
+
+	@include below-sm {
+		height: 44px;
+	}
+}

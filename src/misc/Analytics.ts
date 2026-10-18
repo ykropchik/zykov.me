@@ -70,6 +70,14 @@ class Analytics {
 	private sessionId = '';
 	private started = false;
 
+	public storedVisitorId(): string | null {
+		try {
+			return localStorage.getItem(VISITOR_KEY);
+		} catch {
+			return null;
+		}
+	}
+
 	public track<E extends AnalyticsElement>(element: E, event: AnalyticsEventName<E>, props?: EventProps): void {
 		if (typeof window === 'undefined') {
 			return;
