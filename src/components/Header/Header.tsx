@@ -7,6 +7,7 @@ import SectionsContext from '../../contexts/SectionsContext/SectionsContext.ts';
 import SidebarContext from '../../contexts/SidebarContext/SidebarContext.ts';
 import styles from './Header.module.scss';
 import classNames from 'classnames';
+import { analytics } from '../../misc/Analytics.ts';
 
 const ARRIVE: Transition = { duration: timing.blockIn.seconds, ease: 'easeOut' };
 const DEPART: Transition = { duration: timing.clearPause.seconds, ease: 'easeIn' };
@@ -45,7 +46,13 @@ export default function Header() {
 					className={styles.path}
 					type="button"
 					aria-label="Back to top"
-					onClick={() => firstSection && go(firstSection.name)}
+					onClick={() => {
+						analytics.track('header', 'click');
+
+						if (firstSection) {
+							go(firstSection.name);
+						}
+					}}
 				>
 					<span className={styles.host}>anonym@www: </span><mark>~/</mark><span className={styles.pathSegment}>{home}</span>
 					{/* The slash moves only on the way to and from home; between sections just the name changes. */}

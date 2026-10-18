@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { ArrowUpRightIcon } from '../Icons/Icons.tsx';
 import styles from './CvLink.module.scss';
+import { analytics } from '../../misc/Analytics.ts';
 
 export type CvLinkVariant = 'inline' | 'button';
 
@@ -17,6 +18,7 @@ export default function CvLink({ variant = 'inline' }: CvLinkProps) {
 			target="_blank"
 			rel="noopener"
 			aria-label="CV (PDF, opens in a new tab)"
+			onClick={() => analytics.track('cv', 'click', { variant })}
 		>
 			CV
 			<ArrowUpRightIcon size={16} />
