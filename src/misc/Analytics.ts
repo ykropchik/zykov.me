@@ -13,6 +13,9 @@ import type { AnalyticsElement, AnalyticsEventName } from './analyticsEvents.ts'
 
 const ENDPOINT = '/analytics';
 const VISITOR_KEY = 'visitorId';
+const VISITOR_CREATED_KEY = 'visitorIdCreatedAt';
+/** How long one id may tie a visitor's visits together before it is replaced. */
+const VISITOR_TTL_MS = 90 * 24 * 60 * 60 * 1000;
 /** Keeps a batch well under the ~64KB `sendBeacon` limit. */
 const MAX_QUEUE = 100;
 
@@ -38,12 +41,23 @@ function loadVisitorId(): string {
 	// localStorage throws in some private modes and with blocked site data; such a
 	// visitor just gets a new id per page load.
 	try {
+		const now = Date.now();
 		const stored = localStorage.getItem(VISITOR_KEY);
-		if (stored) {
+		const createdAt = Number(localStorage.getItem(VISITOR_CREATED_KEY));
+
+		if (stored && !createdAt) {
+			// Issued before ids were rotated. Dated now rather than replaced, so the
+			// deploy doesn't turn every returning visitor into a new one at once.
+			localStorage.setItem(VISITOR_CREATED_KEY, String(now));
 			return stored;
 		}
+		if (stored && now - createdAt < VISITOR_TTL_MS) {
+			return stored;
+		}
+
 		const id = randomId();
 		localStorage.setItem(VISITOR_KEY, id);
+		localStorage.setItem(VISITOR_CREATED_KEY, String(now));
 		return id;
 	} catch {
 		return randomId();
