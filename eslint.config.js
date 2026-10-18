@@ -19,7 +19,7 @@ const stylisticConfig = stylistic.configs.customize({
 });
 
 export default defineConfig([
-	globalIgnores(['dist']),
+	globalIgnores(['dist', 'worker/worker-configuration.d.ts']),
 	{
 		files: ['**/*.{js,mjs,jsx,ts,mts,tsx}'],
 		extends: [

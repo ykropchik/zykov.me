@@ -9,6 +9,8 @@
  * visit may arrive as several batches tied together by `sessionId`.
  */
 
+import type { AnalyticsElement, AnalyticsEventName } from './analyticsEvents.ts';
+
 const ENDPOINT = '/analytics';
 const VISITOR_KEY = 'visitorId';
 /** Keeps a batch well under the ~64KB `sendBeacon` limit. */
@@ -54,7 +56,7 @@ class Analytics {
 	private sessionId = '';
 	private started = false;
 
-	public track(element: string, event: string, props?: EventProps): void {
+	public track<E extends AnalyticsElement>(element: E, event: AnalyticsEventName<E>, props?: EventProps): void {
 		if (typeof window === 'undefined') {
 			return;
 		}
