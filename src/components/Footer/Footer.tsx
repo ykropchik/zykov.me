@@ -3,6 +3,7 @@ import { AnimatePresence, useReducedMotionConfig, type Transition } from 'motion
 import * as motion from 'motion/react-m';
 import { timing } from '../../misc/animations.ts';
 import SectionsContext from '../../contexts/SectionsContext/SectionsContext.ts';
+import classNames from 'classnames';
 import styles from './Footer.module.scss';
 
 // Delayed by a block gap to arrive in step with the first line of output, so the
@@ -35,19 +36,35 @@ export default function Footer() {
 		<AnimatePresence>
 			{isShown && (
 				<motion.footer
-					className={styles.footer}
+					className={classNames(styles.footer, styles.floating)}
 					initial={away}
 					animate={{ ...here, transition: ARRIVE }}
 					exit={{ ...away, transition: DEPART }}
 				>
-					<div className={styles.content}>
-						<div className={styles.copyright}>
-							<span>© 2026 Mikhail “Misha” Zykov</span>
-							<span>built&nbsp;at&nbsp;night, deployed&nbsp;in&nbsp;the&nbsp;morning</span>
-						</div>
-					</div>
+					<FooterContent />
 				</motion.footer>
 			)}
 		</AnimatePresence>
+	);
+}
+
+/** For a page that scrolls: it simply ends with the footer. */
+export function StaticFooter({ isPrivacy = false }: { isPrivacy?: boolean }) {
+	return (
+		<footer className={styles.footer}>
+			<FooterContent isPrivacy={isPrivacy} />
+		</footer>
+	);
+}
+
+function FooterContent({ isPrivacy = false }: { isPrivacy?: boolean }) {
+	return (
+		<div className={styles.content}>
+			<div className={styles.copyright}>
+				<span>© 2026 Mikhail Zykov</span>
+				<span>built&nbsp;at&nbsp;night, deployed&nbsp;in&nbsp;the&nbsp;morning</span>
+			</div>
+			{!isPrivacy && <a className={styles.link} href="/privacy">privacy</a>}
+		</div>
 	);
 }

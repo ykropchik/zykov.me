@@ -2,14 +2,18 @@
 
 .footer {
 	@include type('code');
+	box-sizing: border-box;
+	height: $footer-height;
+	border-top: 1px solid token('line');
+}
+
+.floating {
 	// Out of flow: it slides in and out, and a footer that took part in the layout
 	// would resize the section behind it on the way past.
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: $footer-height;
-	border-top: 1px solid token('line');
 	background: token('surface');
 }
 
@@ -19,6 +23,7 @@
 	padding: $space-3 $space-6;
 	max-width: 1120px;
 	margin: 0 auto;
+	justify-content: space-between;
 	display: flex;
 }
 
@@ -28,4 +33,13 @@
 	justify-content: flex-start;
 	gap: $space-2;
 	color: token('ink-muted');
+}
+
+.link {
+	// A line of text is too short to tap; the padding makes up the height
+	// without moving the text.
+	@include below-sm {
+		margin: (-$space-3) 0;
+		padding: $space-3 0;
+	}
 }
