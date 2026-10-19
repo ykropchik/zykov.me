@@ -15,6 +15,27 @@ type State = {
 
 type Step = [at: Duration, state: State];
 
+/** Per tab, so a reload comes back to the same section while a new tab starts from the top. */
+const ACTIVE_SECTION_KEY = 'activeSection';
+
+// sessionStorage throws in some private modes and with blocked site data; such a
+// reader just starts from the first section on every load.
+function loadActiveSection(): string | null {
+	try {
+		return sessionStorage.getItem(ACTIVE_SECTION_KEY);
+	} catch {
+		return null;
+	}
+}
+
+function saveActiveSection(name: string) {
+	try {
+		sessionStorage.setItem(ACTIVE_SECTION_KEY, name);
+	} catch {
+		// Nothing to fall back to: the next load just starts from the top.
+	}
+}
+
 function departure(clearCommand: string): Duration {
 	return keystrokes(clearCommand).plus(timing.clearPause);
 }
@@ -119,6 +140,9 @@ export default function SectionsContextProvider({ homeDir, sections, children }:
 		}
 
 		stopTimers();
+		// Saved on leaving rather than on settling: a reload mid-transition should
+		// land where the reader was heading.
+		saveActiveSection(to.name);
 
 		if (reduced) {
 			arrive(to, cameFrom, Duration.create(0));
@@ -173,11 +197,15 @@ export default function SectionsContextProvider({ homeDir, sections, children }:
 	}, [state.phase, state.activeSection.name]);
 
 	// The state the machine starts in is already that of a section part-way through
-	// an arrival; this sets that arrival running.
+	// an arrival; this sets that arrival running. The section saved before a reload
+	// is read only here: the page is prerendered, so reading it into the initial
+	// state would not match the markup it hydrates.
 	useEffect(() => {
-		arrive(firstSection, firstSection, Duration.create(0));
+		const saved = loadActiveSection();
+		const landing = sections.find((section) => section.name === saved) ?? firstSection;
+		arrive(landing, firstSection, Duration.create(0));
 		return stopTimers;
-	}, [arrive, firstSection, stopTimers]);
+	}, [arrive, firstSection, sections, stopTimers]);
 
 	return (
 		<SectionsContext
