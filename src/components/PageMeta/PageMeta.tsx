@@ -9,9 +9,7 @@ type PageMetaProps = PropsWithChildren<{
 	type?: 'website' | 'profile';
 }>;
 
-// Tags shared by every page stay in index.html; these are the ones a page has to
-// state for itself — kept out of index.html, since Head adds its tags next to
-// whatever is already there rather than replacing it.
+// Tags shared by every page are in Layout; these are the ones a page has to state for itself.
 export default function PageMeta({ title, description, path, type = 'website', children }: PageMetaProps) {
 	return (
 		<Head>

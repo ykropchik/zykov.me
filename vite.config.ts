@@ -11,6 +11,14 @@ export default defineConfig({
 		outDir: '../dist',
 		emptyOutDir: true,
 		target: 'es2015',
+		rolldownOptions: {
+			output: {
+				codeSplitting: {
+					// React changes far less often than the app, so it gets its own cacheable chunk.
+					groups: [{ name: 'react', test: /node_modules[\\/](react|react-dom|scheduler)[\\/]/ }],
+				},
+			},
+		},
 	},
 	resolve: {
 		alias: {
