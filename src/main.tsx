@@ -10,6 +10,10 @@ import Layout from './components/Layout/Layout.tsx';
 import PageMeta from './components/PageMeta/PageMeta.tsx';
 import Privacy from './pages/Privacy/Privacy.tsx';
 import { ViteReactSSG } from 'vite-react-ssg';
+// vite-react-ssg loads this with a dynamic import(), which the browser only discovers
+// after the entry chunk has run. A static import puts it into the entry's graph, so
+// Vite emits a modulepreload for it and both chunks download in parallel.
+import 'react-dom/client';
 
 import './styles/index.scss';
 
